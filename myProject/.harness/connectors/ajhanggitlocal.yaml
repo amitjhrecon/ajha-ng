@@ -1,0 +1,16 @@
+connector:
+  name: ajha-ng-git-local
+  identifier: ajhanggitlocal
+  description: ""
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  type: Git
+  spec:
+    url: https://github.com/amitjhrecon/ajha-ng
+    executeOnDelegate: false
+    type: Http
+    connectionType: Repo
+    spec:
+      username: amitjha.sit@gmail.com
+      usernameRef: null
+      passwordRef: ajhanggitlocal
