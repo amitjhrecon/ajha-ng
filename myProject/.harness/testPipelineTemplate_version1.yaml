@@ -47,3 +47,8 @@ template:
                   - AllErrors
                 action:
                   type: StageRollback
+          variables:
+            - name: test2
+              type: String
+              description: ""
+              value: ""
