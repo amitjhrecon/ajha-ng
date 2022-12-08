@@ -1,0 +1,76 @@
+pipeline:
+  name: Canaryk8
+  identifier: Canaryk8
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  stages:
+    - stage:
+        name: canarydeploy
+        identifier: canarydeploy
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: Kubernetes
+          service:
+            serviceRef: canarysrv
+          environment:
+            environmentRef: canaryenv
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: k8infracanary
+          execution:
+            steps:
+              - stepGroup:
+                  name: Canary Deployment
+                  identifier: canaryDepoyment
+                  steps:
+                    - step:
+                        name: Canary Deployment
+                        identifier: canaryDeployment
+                        type: K8sCanaryDeploy
+                        timeout: 10m
+                        spec:
+                          instanceSelection:
+                            spec:
+                              percentage: 50
+                            type: Percentage
+                          skipDryRun: false
+                        failureStrategies: []
+                    - step:
+                        name: Canary Delete
+                        identifier: canaryDelete
+                        type: K8sCanaryDelete
+                        timeout: 10m
+                        spec: {}
+              - stepGroup:
+                  name: Primary Deployment
+                  identifier: primaryDepoyment
+                  steps:
+                    - step:
+                        name: Rolling Deployment
+                        identifier: rollingDeployment
+                        type: K8sRollingDeploy
+                        timeout: 10m
+                        spec:
+                          skipDryRun: false
+            rollbackSteps:
+              - step:
+                  name: Canary Delete
+                  identifier: rollbackCanaryDelete
+                  type: K8sCanaryDelete
+                  timeout: 10m
+                  spec: {}
+              - step:
+                  name: Rolling Rollback
+                  identifier: rollingRollback
+                  type: K8sRollingRollback
+                  timeout: 10m
+                  spec: {}
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
