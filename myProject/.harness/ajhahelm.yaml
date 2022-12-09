@@ -6,7 +6,7 @@ connector:
   projectIdentifier: ajhacseng
   type: HttpHelmRepo
   spec:
-    helmRepoUrl: https://github.com/amitjhrecon/helmlab
+    helmRepoUrl: https://amitjhrecon.github.io/helmlab/
     auth:
       type: UsernamePassword
       spec:
