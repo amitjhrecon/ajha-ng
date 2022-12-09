@@ -1,0 +1,16 @@
+connector:
+  name: ajha-helm
+  identifier: ajhahelm
+  description: ""
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  type: HttpHelmRepo
+  spec:
+    helmRepoUrl: https://github.com/amitjhrecon/helmlab
+    auth:
+      type: UsernamePassword
+      spec:
+        username: amitjha.sit@gmail.com
+        passwordRef: ajhanggitlocal
+    delegateSelectors:
+    - ajha-ng-delegate
