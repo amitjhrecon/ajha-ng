@@ -37,7 +37,7 @@ pipeline:
                       type: ManifestPath
                       spec:
                         manifestPaths:
-                          - helm-chart-test/templates/deployment.yaml
+                          - helm-chart-test
                           - helm-chart-test/values.yaml
                   timeout: 10m
             rollbackSteps:
