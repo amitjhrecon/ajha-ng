@@ -38,7 +38,7 @@ pipeline:
                       spec:
                         manifestPaths:
                           - helm-chart-test
-                          - helm-chart-test/values.yaml
+                          - charts/values.yaml
                   timeout: 10m
             rollbackSteps:
               - step:
