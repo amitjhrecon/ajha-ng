@@ -28,6 +28,17 @@ pipeline:
                   timeout: 10m
                   spec:
                     skipDryRun: false
+              - step:
+                  type: K8sDelete
+                  name: Delete
+                  identifier: Delete
+                  spec:
+                    deleteResources:
+                      type: ManifestPath
+                      spec:
+                        manifestPaths:
+                          - myhelmmanifest
+                  timeout: 10m
             rollbackSteps:
               - step:
                   name: Helm Rollback
