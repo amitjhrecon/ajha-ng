@@ -1,0 +1,13 @@
+connector:
+  name: testgcp
+  identifier: testgcp
+  description: ""
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  type: Gcp
+  spec:
+    credential:
+      type: InheritFromDelegate
+    delegateSelectors:
+    - ajha-ng-delegate
+    executeOnDelegate: true
