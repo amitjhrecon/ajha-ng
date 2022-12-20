@@ -1,6 +1,6 @@
 template:
-  name: shellscriptstep-ajha-git
-  identifier: shellscriptstepajhagit
+  name: testTemplategit_ver1
+  identifier: testTemplategit_ver1
   versionLabel: ver1
   type: Step
   tags: {}
