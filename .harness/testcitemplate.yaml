@@ -1,0 +1,14 @@
+template:
+  name: testcitemplate
+  identifier: testcitemplate
+  versionLabel: ver1
+  type: Step
+  tags: {}
+  spec:
+    type: Run
+    spec:
+      connectorRef: account.harnessImage
+      image: library/nginx
+      shell: Sh
+      command: echo "test"
+    description: test run
