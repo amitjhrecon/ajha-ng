@@ -1,0 +1,24 @@
+template:
+  name: ajhastagejiranew
+  identifier: ajhastagejiranew
+  versionLabel: ver1
+  type: Stage
+  tags: {}
+  spec:
+    type: SecurityTests
+    spec:
+      cloneCodebase: false
+      platform:
+        os: Linux
+        arch: Amd64
+      runtime:
+        type: Cloud
+        spec: {}
+      execution:
+        steps:
+          - step:
+              name: teststep
+              identifier: teststep
+              template:
+                templateRef: account.testcitemplate
+                versionLabel: ver1
