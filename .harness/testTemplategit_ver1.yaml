@@ -1,0 +1,26 @@
+template:
+  name: shellscriptstep-ajha
+  identifier: shellscriptstepajha
+  versionLabel: ver1
+  type: Step
+  tags: {}
+  spec:
+    timeout: 10m
+    type: Command
+    spec:
+      onDelegate: false
+      environmentVariables:
+        - name: testvar
+          type: String
+          value: test
+      outputVariables: []
+      commandUnits:
+        - identifier: testcommand
+          name: testcommand
+          type: Script
+          spec:
+            shell: Bash
+            source:
+              type: Inline
+              spec:
+                script: echo "test values"
