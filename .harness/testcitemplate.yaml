@@ -1,6 +1,6 @@
 template:
-  name: testcitemplate
-  identifier: testcitemplate
+  name: testimportcitemplate
+  identifier: testimportcitemplate
   versionLabel: ver1
   type: Step
   tags: {}
