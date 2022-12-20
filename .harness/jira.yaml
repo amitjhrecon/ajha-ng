@@ -1,0 +1,18 @@
+template:
+  name: jiratemplategit
+  identifier: jiratemplategit
+  versionLabel: ver1
+  type: Step
+  tags: {}
+  spec:
+    timeout: 1d
+    type: JiraCreate
+    spec:
+      connectorRef: account.Testdelete
+      projectKey: CSE
+      issueType: Bug
+      fields:
+        - name: Description
+          value: test bug
+        - name: Summary
+          value: test summary
