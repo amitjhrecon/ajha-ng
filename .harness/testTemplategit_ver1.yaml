@@ -1,6 +1,6 @@
 template:
-  name: testTemplategit_ver1
-  identifier: testTemplategit_ver1
+  name: testTemplategit
+  identifier: testTemplategit
   versionLabel: ver1
   type: Step
   tags: {}
