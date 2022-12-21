@@ -1,0 +1,19 @@
+template:
+  name: testtemp
+  type: Step
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  spec:
+    type: ShellScript
+    timeout: 10m
+    spec:
+      shell: Bash
+      onDelegate: true
+      source:
+        type: Inline
+        spec:
+          script: echo "test execution"
+      environmentVariables: []
+      outputVariables: []
+  versionLabel: "1"
+  identifier: testtemp
