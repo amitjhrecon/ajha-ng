@@ -1,0 +1,33 @@
+template:
+  name: DT
+  identifier: DT
+  versionLabel: "1"
+  type: CustomDeployment
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  spec:
+    infrastructure:
+      variables: []
+      fetchInstancesScript:
+        store:
+          type: Inline
+          spec:
+            content: |-
+              #
+              # Script is expected to query Infrastructure and dump json
+              # in $INSTANCE_OUTPUT_PATH file path
+              #
+              # Harness is expected to initialize ${INSTANCE_OUTPUT_PATH}
+              # environment variable - a random unique file path on delegate,
+              # so script execution can save the result.
+              #
+              /opt/harness-delegate/client-tools/kubectl/v1.19.2/kubectl get pods --namespace=harness-delegate-ng -o json > $INSTANCE_OUTPUT_PATH
+      instanceAttributes:
+        - name: instancename
+          jsonPath: metadata.name
+          description: ""
+      instancesListPath: items
+    execution:
+      stepTemplateRefs:
+        - testtemp
