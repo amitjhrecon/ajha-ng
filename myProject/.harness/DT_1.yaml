@@ -22,12 +22,20 @@ template:
               # environment variable - a random unique file path on delegate,
               # so script execution can save the result.
               #
-              /opt/harness-delegate/client-tools/kubectl/v1.19.2/kubectl get pods --namespace=harness-delegate-ng -o json > $INSTANCE_OUTPUT_PATH
+              cat > $INSTANCE_OUTPUT_PATH <<_EOF_
+              {
+                "data": [
+                  {
+                    "functionName": "test-input"
+                  }
+                ]
+              } 
+              _EOF_
       instanceAttributes:
         - name: instancename
-          jsonPath: metadata.name
+          jsonPath: functionName
           description: ""
-      instancesListPath: items
+      instancesListPath: data
     execution:
       stepTemplateRefs:
         - testtemp
