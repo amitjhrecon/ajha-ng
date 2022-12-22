@@ -1,0 +1,24 @@
+connector:
+  name: ajhagitmanifest
+  identifier: ajhagitmanifest
+  description: ""
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  type: Github
+  spec:
+    url: https://github.com/amitjhrecon/ajha-ng
+    authentication:
+      type: Http
+      spec:
+        type: UsernameToken
+        spec:
+          username: amitjha.sit@gmail.com
+          tokenRef: ajhanggitlocal
+    apiAccess:
+      type: Token
+      spec:
+        tokenRef: ajhanggitlocal
+    delegateSelectors:
+    - ajha-ng-delegate
+    executeOnDelegate: true
+    type: Repo
