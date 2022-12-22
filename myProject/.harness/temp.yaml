@@ -1,0 +1,32 @@
+pipeline:
+  name: temp
+  identifier: temp
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  stages:
+    - stage:
+        name: teststage
+        identifier: teststage
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: dummy
+                  identifier: dummy
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          echo "line 1"
+                          echo "line2"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
