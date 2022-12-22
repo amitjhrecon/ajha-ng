@@ -24,8 +24,12 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          echo "line 1"
-                          echo "line2"
+                          i=1
+                          while [ $i -le 10 ]
+                          do
+                              echo "Line ${i}"
+                              i=$(($i+1))
+                          done
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
