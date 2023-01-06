@@ -23,14 +23,14 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: |-
-                          i=1
-                          while [ $i -le 100000 ]
-                          do
-                              echo "Line ${i} This is a very long line that we are trying to print in order to replicate the log truncate issue. This is a simple script which prints a line in loop . This will continue to print line with a number so that we will be able to track how much lines are shown in logs"
-                              i=$(($i+1))
-                          done
+                        script: echo "<+pipeline.variables.testvar>>"
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
         tags: {}
+  variables:
+    - name: testvar
+      type: String
+      default: "false"
+      description: ""
+      value: <+input>.allowedValues(true,false)
