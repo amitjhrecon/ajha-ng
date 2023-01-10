@@ -11,6 +11,6 @@ connector:
       type: UsernamePassword
       spec:
         username: amitjha.sit@gmail.com
-        passwordRef: ajhanggitlocal
+        passwordRef: ajhagitacc
     delegateSelectors:
     - citirepro
