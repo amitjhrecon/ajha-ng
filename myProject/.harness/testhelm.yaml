@@ -1,0 +1,16 @@
+connector:
+  name: testhelm
+  identifier: testhelm
+  description: ""
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  type: HttpHelmRepo
+  spec:
+    helmRepoUrl: https://amitjhrecon.github.io/helmlab
+    auth:
+      type: UsernamePassword
+      spec:
+        username: amitjha.sit@gmail.com
+        passwordRef: ajhanggitlocal
+    delegateSelectors:
+    - citirepro
