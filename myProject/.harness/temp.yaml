@@ -23,11 +23,22 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo "<+pipeline.variables.testvar>>"
+                        script: |-
+                          echo "printing vars"
+                          echo "<+stage.variables>"
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
         tags: {}
+        variables:
+          - name: var1
+            type: String
+            description: ""
+            value: var1
+          - name: var2
+            type: String
+            description: ""
+            value: var2
   variables:
     - name: testvar
       type: String
