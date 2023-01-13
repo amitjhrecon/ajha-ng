@@ -34,11 +34,11 @@ pipeline:
           - name: var1
             type: String
             description: ""
-            value: var1
+            value: dssadasd
           - name: var2
             type: String
             description: ""
-            value: var2
+            value: dasdad
   variables:
     - name: testvar
       type: String
