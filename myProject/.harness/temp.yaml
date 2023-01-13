@@ -26,7 +26,15 @@ pipeline:
                         script: |-
                           echo "printing vars"
                           echo "<+stage.variables>"
-                          vararray=($(echo <+stage.variables> | sed 's/^.//' | sed 's/.$//' | awk -F ', ' '{ for (i = 0; ++i <= NF;) print $i }' )
+                          vararray=($(echo "<+stage.variables>" | sed 's/^.//' | sed 's/.$//' | awk -F ', ' '{ for (i = 0; ++i <= NF;) print $i }' )
+                          for i in "${vararray[@]}"; do
+                            var=${i//=/=\"}
+                            newvar=$(echo "${var//'\n'/\"'\n'\"}\"" | awk '{$1=$1;print}')
+                            echo "export TF_VAR_${newvar}"
+                            eval "export TF_VAR_${newvar}"
+                           done
+                          }
+                          export_vars
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
