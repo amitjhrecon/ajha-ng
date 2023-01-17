@@ -26,12 +26,13 @@ pipeline:
                         script: |-
                           echo "printing vars"
                           echo "<+stage.variables>"
-                          vararray=($(echo "{var2=dasdad, var1=dasdsad}" | sed 's/^.//' | sed 's/.$//' | awk -F ', ' '{ for (i = 0; ++i <= NF;) print $i }' ))
+                          vararray=($(echo <+stage.variables> | sed 's/^.//' | sed 's/.$//' | awk -F ', ' '{ for (i = 0; ++i <= NF;) print $i }' ))
 
 
                           for item in "${vararray[@]}"
                           do
-                              echo $item
+                              echo $item | awk -F'=' '{print $1}'
+                              echo $item | awk -F'=' '{print $2}'
                           done
                     environmentVariables: []
                     outputVariables: []
