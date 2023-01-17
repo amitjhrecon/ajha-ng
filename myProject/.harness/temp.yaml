@@ -26,17 +26,13 @@ pipeline:
                         script: |-
                           echo "printing vars"
                           echo "<+stage.variables>"
-                          vararray=($(echo "{var2=dasdad, var1=dasdsad}" | sed 's/^.//' | sed 's/.$//' | awk -F ', ' '{ for (i = 0; ++i <= NF;) print $i }' )
+                          vararray=($(echo "{var2=dasdad, var1=dasdsad}" | sed 's/^.//' | sed 's/.$//' | awk -F ', ' '{ for (i = 0; ++i <= NF;) print $i }' ))
 
-                          echo ${vararray}
-                          for i in "${vararray[@]}"; do
-                            var=${i//=/=\"}
-                            newvar=$(echo "${var//'\n'/\"'\n'\"}\"" | awk '{$1=$1;print}')
-                            echo "export TF_VAR_${newvar}"
-                            eval "export TF_VAR_${newvar}"
-                           done
-                          }
-                          export_vars
+
+                          for item in "${vararray[@]}"
+                          do
+                              echo $item
+                          done
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
