@@ -40,6 +40,7 @@ pipeline:
                           if [[ ! -z "<+stage.variables.EXTRA_TAGS>" ]]; then
                             IFS=$'\n'
                             tag_array=($(echo "<+stage.variables.EXTRA_TAGS>" | awk -F ', ' '{ for (i = 0; ++i <= NF;) print $i }' ))
+                          fi
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
