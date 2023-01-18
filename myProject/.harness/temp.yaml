@@ -36,6 +36,8 @@ pipeline:
                               echo $varabc
                               echo $vardef
                           done
+
+                          tag_array=($(echo "<+stage.variables.EXTRA_TAGS>" | awk -F ',' '{ for (i = 0; ++i <= NF;) print $i }' ))
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
