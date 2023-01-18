@@ -50,6 +50,6 @@ pipeline:
   variables:
     - name: testvar
       type: String
-      default: "false"
+      default: ""
       description: ""
       value: <+input>.allowedValues(true,false)
