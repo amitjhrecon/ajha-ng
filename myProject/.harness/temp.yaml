@@ -51,6 +51,10 @@ pipeline:
             type: String
             description: ""
             value: dasdad
+          - name: EXTRA_TAGS
+            type: String
+            description: ""
+            value: value1,value2,value3
   variables:
     - name: testvar
       type: String
