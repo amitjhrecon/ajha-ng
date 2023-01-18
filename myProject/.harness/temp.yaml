@@ -31,8 +31,10 @@ pipeline:
 
                           for item in "${vararray[@]}"
                           do
-                              echo $item | awk -F'=' '{print $1}'
-                              echo $item | awk -F'=' '{print $2}'
+                              varabc= echo $item | awk -F'=' '{print $1}'
+                              vardef= echo $item | awk -F'=' '{print $2}'
+                              echo $varabc
+                              echo $vardef
                           done
                     environmentVariables: []
                     outputVariables: []
