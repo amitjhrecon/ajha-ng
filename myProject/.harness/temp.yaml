@@ -57,7 +57,7 @@ pipeline:
           - name: EXTRA_TAGS
             type: String
             description: ""
-            value: value1,value2,value3
+            value: ""
   variables:
     - name: testvar
       type: String
