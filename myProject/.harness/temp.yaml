@@ -41,6 +41,8 @@ pipeline:
                             IFS=$'\n'
                             tag_array=($(echo "<+stage.variables.EXTRA_TAGS>" | awk -F ', ' '{ for (i = 0; ++i <= NF;) print $i }' ))
                           fi
+
+                          echo "text secret is: " <+secrets.getValue("testsecret")>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
