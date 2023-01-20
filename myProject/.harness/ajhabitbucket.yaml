@@ -14,11 +14,6 @@ connector:
         spec:
           username: amit.jha@harness.io
           passwordRef: ajhabitbuckettoken
-    apiAccess:
-      type: UsernameToken
-      spec:
-        username: amit.jha@harness.io
-        tokenRef: ajhabitbuckettoken
     delegateSelectors:
     - ajha-ng-delegate
     executeOnDelegate: true
