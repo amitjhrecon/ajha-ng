@@ -1,0 +1,25 @@
+connector:
+  name: ajhabitbucket
+  identifier: ajhabitbucket
+  description: ""
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  type: Bitbucket
+  spec:
+    url: https://ajharecon@bitbucket.org/ajhaws/ajhabbrepo.git
+    authentication:
+      type: Http
+      spec:
+        type: UsernamePassword
+        spec:
+          username: amit.jha@harness.io
+          passwordRef: ajhabitbuckettoken
+    apiAccess:
+      type: UsernameToken
+      spec:
+        username: amit.jha@harness.io
+        tokenRef: ajhabitbuckettoken
+    delegateSelectors:
+    - ajha-ng-delegate
+    executeOnDelegate: true
+    type: Repo
