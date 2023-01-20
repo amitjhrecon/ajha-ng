@@ -12,12 +12,12 @@ connector:
       spec:
         type: UsernamePassword
         spec:
-          username: amit.jha@harness.io
+          username: ajharecon
           passwordRef: ajhabitbuckettoken
     apiAccess:
       type: UsernameToken
       spec:
-        username: amit.jha@harness.io
+        username: ajharecon
         tokenRef: ajhabitbuckettoken
     delegateSelectors:
     - ajha-ng-delegate
