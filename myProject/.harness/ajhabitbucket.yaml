@@ -6,7 +6,7 @@ connector:
   projectIdentifier: ajhacseng
   type: Bitbucket
   spec:
-    url: https://ajharecon@bitbucket.org/ajhaws/ajhabbrepo.git
+    url: https://bitbucket.org/ajhaws/ajhabbrepo
     authentication:
       type: Http
       spec:
