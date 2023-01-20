@@ -12,7 +12,7 @@ connector:
       spec:
         type: UsernamePassword
         spec:
-          username: ajharecon
+          username: amit.jha@harness.io
           passwordRef: ajhabitbuckettoken
     apiAccess:
       type: UsernameToken
