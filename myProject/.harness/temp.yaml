@@ -24,7 +24,7 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-
+                          echo "printing secret"
                           echo "text secret is: " <+secrets.getValue("testsecret")>
                     environmentVariables: []
                     outputVariables: []
