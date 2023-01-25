@@ -25,7 +25,7 @@ pipeline:
                       spec:
                         script: |-
                           echo "printing secret"
-                          echo "text secret is: " <+secrets.getValue("testsecret")>
+                          echo "text secret is: " <+secrets.getValue("dummysecret")>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
