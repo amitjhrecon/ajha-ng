@@ -57,4 +57,4 @@ pipeline:
     - name: secretvar
       type: String
       description: ""
-      value: <+secrets.getValue("testsecret")>
+      value: "\"testval\""
