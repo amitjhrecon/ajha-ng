@@ -43,6 +43,31 @@ pipeline:
             type: String
             description: ""
             value: ""
+    - stage:
+        name: testtemplatestage
+        identifier: testtemplatestage
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  name: testtemplatestep
+                  identifier: testtemplatestep
+                  template:
+                    templateRef: testtemp
+                    versionLabel: "1"
+                    templateInputs:
+                      type: ShellScript
+                      spec:
+                        environmentVariables:
+                          - name: var1
+                            type: String
+                            value: <+input>
+                          - name: var2
+                            type: String
+                            value: <+input>
+        tags: {}
   variables:
     - name: testvar
       type: String
