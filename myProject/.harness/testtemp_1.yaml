@@ -13,7 +13,13 @@ template:
         type: Inline
         spec:
           script: echo "test execution"
-      environmentVariables: []
+      environmentVariables:
+        - name: var1
+          type: String
+          value: <+input>
+        - name: var2
+          type: String
+          value: <+input>
       outputVariables: []
   versionLabel: "1"
   identifier: testtemp
