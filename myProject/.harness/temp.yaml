@@ -26,6 +26,8 @@ pipeline:
                         script: |-
                           echo "printing secret"
                           echo "text secret is: " <+pipeline.variables.testvar>
+                          echo "NX_REVEL_GRAPHQL_URL=https://<+pipeline.variables.testvar>.dev.revel.vivun.com/api/graphql"
+                          echo "NX_REVEL_GRAPHQL_URL=https://"<+pipeline.variables.testvar>".dev.revel.vivun.com/api/graphql"
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
