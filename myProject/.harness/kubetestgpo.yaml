@@ -29,18 +29,6 @@ pipeline:
                   spec:
                     skipDryRun: false
                     pruningEnabled: false
-              - step:
-                  type: K8sApply
-                  name: Apply_1
-                  identifier: Apply_1
-                  spec:
-                    filePaths:
-                      - templates/service.yaml
-                    skipDryRun: false
-                    skipSteadyStateCheck: false
-                    skipRendering: false
-                    overrides: []
-                  timeout: 10m
             rollbackSteps:
               - step:
                   name: Rollback Rollout Deployment
