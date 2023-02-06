@@ -44,7 +44,7 @@ pipeline:
                   identifier: Apply_1
                   spec:
                     filePaths:
-                      - kubemanifest/templates/service.yaml
+                      - templates/service.yaml
                     skipDryRun: false
                     skipSteadyStateCheck: false
                     skipRendering: false
