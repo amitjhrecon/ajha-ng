@@ -1,0 +1,18 @@
+connector:
+  name: amitdocker
+  identifier: amitdocker
+  description: ""
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  type: DockerRegistry
+  spec:
+    dockerRegistryUrl: https://registry.hub.docker.com/v2/
+    providerType: DockerHub
+    auth:
+      type: UsernamePassword
+      spec:
+        username: amitjha89
+        passwordRef: ajhadocker
+    delegateSelectors:
+    - ajha-ng-delegate
+    executeOnDelegate: true
