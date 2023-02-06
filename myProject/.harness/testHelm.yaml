@@ -17,8 +17,7 @@ pipeline:
           environment:
             environmentRef: gcpinfra
             deployToAll: false
-            infrastructureDefinitions:
-              - identifier: testinfra
+            infrastructureDefinitions: <+input>
           execution:
             steps:
               - step:
