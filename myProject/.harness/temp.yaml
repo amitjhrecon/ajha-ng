@@ -26,7 +26,7 @@ pipeline:
                         script: |-
                           echo "printing secret"
                           echo "text secret is: " <+pipeline.variables.testvar>
-                          echo <+<+pipeline.variables.envVar>.split(',')[0]>
+                          echo <+<+pipeline.variables.envVar>.split('-')[0]>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
@@ -78,4 +78,4 @@ pipeline:
     - name: envVar
       type: String
       description: ""
-      value: value1,value2,value3
+      value: value1-value2-value3
