@@ -26,8 +26,7 @@ pipeline:
                         script: |-
                           echo "printing secret"
                           echo "text secret is: " <+pipeline.variables.testvar>
-                          echo "NX_REVEL_GRAPHQL_URL=https://<+stage.variables.var1>.dev.revel.vivun.com/api/graphql"
-                          echo "NX_REVEL_GRAPHQL_URL=https://"<+stage.variables.var1>".dev.revel.vivun.com/api/graphql"
+                          echo <+<+pipeline.variables.envVar>.split(',')[0]>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
@@ -76,3 +75,7 @@ pipeline:
       default: ""
       description: ""
       value: <+secrets.getValue("testsecret")>
+    - name: envVar
+      type: String
+      description: ""
+      value: value1,value2,value3
