@@ -78,4 +78,4 @@ pipeline:
     - name: envVar
       type: String
       description: ""
-      value: value1-value2-value3
+      value: <+input>
