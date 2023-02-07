@@ -74,7 +74,7 @@ pipeline:
       type: String
       default: ""
       description: ""
-      value: <+secrets.getValue("testsecret")>
+      value: <+<+pipeline.variables.envVar>.split(',')[0]>
     - name: envVar
       type: String
       description: ""
