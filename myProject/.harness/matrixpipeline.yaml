@@ -54,7 +54,7 @@ pipeline:
           matrix:
             service:
               - svc1
-              - <+pipeline.variables.testsvc>
+              - <+pipeline.variables.selectsvc>
               - svc3
             environment:
               - env1
@@ -76,4 +76,8 @@ pipeline:
     - name: testsvc
       type: String
       description: ""
-      value: testsvc
+      value: prodsvc-testsvc
+    - name: selectsvc
+      type: String
+      description: ""
+      value: <+<+pipeline.variables.testsvc>.split('-')[0]>
