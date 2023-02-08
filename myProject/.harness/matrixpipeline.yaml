@@ -54,7 +54,7 @@ pipeline:
           matrix:
             service:
               - svc1
-              - <+stage.variables.testsvc>
+              - svc2
               - svc3
             environment:
               - env1
