@@ -76,7 +76,7 @@ pipeline:
     - name: testsvc
       type: String
       description: ""
-      value: prodsvc-testsvc
+      value: <+input>
     - name: selectsvc
       type: String
       description: ""
