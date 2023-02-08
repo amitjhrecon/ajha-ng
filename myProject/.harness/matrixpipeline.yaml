@@ -33,7 +33,6 @@ pipeline:
                           echo "Current item (version): <+repeat.item>"  
                     environmentVariables: []
                     outputVariables: []
-                    executionTarget: {}
                   timeout: 10m
                   failureStrategies: []
                   strategy:
