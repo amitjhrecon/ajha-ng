@@ -54,7 +54,7 @@ pipeline:
           matrix:
             service:
               - svc1
-              - svc2
+              - <+stage.variables.testsvc>
               - svc3
             environment:
               - env1
@@ -63,3 +63,8 @@ pipeline:
               - service: svc1
                 environment: env1
           maxConcurrency: 2
+        variables:
+          - name: testsvc
+            type: String
+            description: ""
+            value: myservice
