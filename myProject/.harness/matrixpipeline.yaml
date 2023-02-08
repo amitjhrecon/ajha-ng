@@ -54,7 +54,7 @@ pipeline:
           matrix:
             service:
               - svc1
-              - <+pipeline.variables.selectsvc>
+              - <+<+pipeline.variables.testsvc>.split('-')[0]>
               - svc3
             environment:
               - env1
