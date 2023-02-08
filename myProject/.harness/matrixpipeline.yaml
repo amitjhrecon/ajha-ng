@@ -52,6 +52,8 @@ pipeline:
         tags: {}
         strategy:
           matrix:
+            modules:
+              - <+<+pipeline.variables.testsvc>.split('-')[0]>
             service:
               - svc1
               - <+<+pipeline.variables.testsvc>.split('-')[0]>
