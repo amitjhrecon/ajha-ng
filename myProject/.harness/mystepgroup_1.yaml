@@ -1,0 +1,11 @@
+template:
+  name: mystepgroup
+  identifier: mystepgroup
+  versionLabel: "1"
+  type: StepGroup
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  spec:
+    stageType: Custom
+    steps: []
