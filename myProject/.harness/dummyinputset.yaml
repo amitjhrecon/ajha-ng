@@ -1,0 +1,59 @@
+inputSet:
+  name: dummyinputset
+  identifier: dummyinputset
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  pipeline:
+    identifier: testartifactpipeline
+    stages:
+      - stage:
+          identifier: tempstage
+          type: Deployment
+          spec:
+            service:
+              serviceInputs:
+                serviceDefinition:
+                  type: Kubernetes
+                  spec:
+                    artifacts:
+                      primary:
+                        primaryArtifactRef: tempartifact
+                        sources:
+                          - identifier: tempartifact
+                            type: DockerRegistry
+                            spec:
+                              tag: stable
+      - stage:
+          identifier: chainingpipelinestage
+          type: Pipeline
+          spec:
+            inputs:
+              identifier: temp
+              stages:
+                - stage:
+                    identifier: testtemplatestage
+                    type: Custom
+                    spec:
+                      execution:
+                        steps:
+                          - step:
+                              identifier: testtemplatestep
+                              template:
+                                templateInputs:
+                                  type: ShellScript
+                                  spec:
+                                    environmentVariables:
+                                      - name: var1
+                                        type: String
+                                        value: hjhj
+                                      - name: var2
+                                        type: String
+                                        value: njhjh
+              variables:
+                - name: envVar
+                  type: String
+                  value: <+pipeline.variables.dummy>
+    variables:
+      - name: testvar
+        type: String
+        value: testvalue
