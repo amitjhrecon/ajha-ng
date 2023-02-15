@@ -69,6 +69,6 @@ pipeline:
   variables:
     - name: testvar
       type: String
-      default: "null"
+      default: ""
       description: ""
-      value: <+input>.allowedValues(test,temp,null)
+      value: <+input>.regex([a-z]*)
