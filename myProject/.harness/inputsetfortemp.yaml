@@ -1,0 +1,31 @@
+inputSet:
+  name: inputsetfortemp
+  identifier: inputsetfortemp
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  pipeline:
+    identifier: temp
+    stages:
+      - stage:
+          identifier: testtemplatestage
+          type: Custom
+          spec:
+            execution:
+              steps:
+                - step:
+                    identifier: testtemplatestep
+                    template:
+                      templateInputs:
+                        type: ShellScript
+                        spec:
+                          environmentVariables:
+                            - name: var1
+                              type: String
+                              value: dasd
+                            - name: var2
+                              type: String
+                              value: dasd
+    variables:
+      - name: envVar
+        type: String
+        value: <+pipeline.variables.dummy>
