@@ -78,4 +78,8 @@ pipeline:
     - name: envVar
       type: String
       description: ""
-      value: <+input>
+      value: <+input>.allowedValues(<+pipeline.variables.dummy>)
+    - name: dummy
+      type: String
+      description: ""
+      value: dadadsdas
