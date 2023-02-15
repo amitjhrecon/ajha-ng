@@ -75,33 +75,9 @@ pipeline:
           org: CSE
           pipeline: temp
           project: ajhacseng
-          inputs:
-            identifier: temp
-            stages:
-              - stage:
-                  identifier: testtemplatestage
-                  type: Custom
-                  spec:
-                    execution:
-                      steps:
-                        - step:
-                            identifier: testtemplatestep
-                            template:
-                              templateInputs:
-                                type: ShellScript
-                                spec:
-                                  environmentVariables:
-                                    - name: var1
-                                      type: String
-                                      value: <+input>
-                                    - name: var2
-                                      type: String
-                                      value: <+input>
-            variables:
-              - name: envVar
-                type: String
-                value: <+input>.allowedValues(<+pipeline.variables.dummy>)
           outputs: []
+          inputSetReferences:
+            - <+pipeline.variable.value1>
   variables:
     - name: testvar
       type: String
