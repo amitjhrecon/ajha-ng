@@ -25,6 +25,7 @@ pipeline:
                       spec:
                         script: |-
                           echo "printing secret"
+                          echo <secrets.getValue("dummysecret")>
                           echo "text secret is: " <+pipeline.variables.testvar>
                           echo <+<+pipeline.variables.envVar>.split('-')[0]>
                     environmentVariables: []
