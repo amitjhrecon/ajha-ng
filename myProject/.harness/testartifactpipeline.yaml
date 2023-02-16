@@ -77,10 +77,14 @@ pipeline:
           project: ajhacseng
           outputs: []
           inputSetReferences:
-            - <+pipeline.pipeline.variables.testvar>
+            - <+pipeline.variables.inpset>
   variables:
     - name: testvar
       type: String
       default: ""
       description: ""
       value: <+input>.regex([a-z]*)
+    - name: inpset
+      type: String
+      description: ""
+      value: inputsetfortemp
