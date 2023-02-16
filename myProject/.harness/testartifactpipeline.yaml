@@ -77,7 +77,7 @@ pipeline:
           project: ajhacseng
           outputs: []
           inputSetReferences:
-            - <+pipeline.variable.value1>
+            - inputsetfortemp
   variables:
     - name: testvar
       type: String
