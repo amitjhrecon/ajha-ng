@@ -75,11 +75,11 @@ pipeline:
       type: String
       default: ""
       description: ""
-      value: <+<+pipeline.variables.envVar>.split(',')[0]>
+      value: hgjgj
     - name: envVar
       type: String
       description: ""
-      value: <+input>.allowedValues(<+pipeline.variables.dummy>)
+      value: <+input>.allowedValues(abcd,efgh,dasdad,dadad,eqweqe,thdh)
     - name: dummy
       type: String
       description: ""
