@@ -27,10 +27,10 @@ template:
                         spec:
                           tag: <+input>.allowedValues(abcd)
             environment:
-              environmentRef: <+input>
+              environmentRef: <+pipeline.variables.var1>
               deployToAll: false
-              environmentInputs: <+input>
-              infrastructureDefinitions: <+input>
+              infrastructureDefinitions:
+                - identifier: <+pipeline.variables.var2>
             execution:
               steps:
                 - step:
