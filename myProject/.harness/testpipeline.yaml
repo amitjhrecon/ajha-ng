@@ -11,8 +11,15 @@ pipeline:
             type: Deployment
             spec:
               service:
-                serviceRef: <+input>
-                serviceInputs: <+input>
+                serviceInputs:
+                  serviceDefinition:
+                    type: Kubernetes
+                    spec:
+                      artifacts:
+                        primary:
+                          type: DockerRegistry
+                          spec:
+                            tag: <+input>.allowedValues(abcd)
               environment:
                 environmentRef: <+input>
                 environmentInputs: <+input>
