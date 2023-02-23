@@ -20,10 +20,6 @@ pipeline:
                           type: DockerRegistry
                           spec:
                             tag: <+input>.allowedValues(abcd)
-              environment:
-                environmentRef: <+input>
-                environmentInputs: <+input>
-                infrastructureDefinitions: <+input>
   tags: {}
   projectIdentifier: ajhacseng
   orgIdentifier: CSE
