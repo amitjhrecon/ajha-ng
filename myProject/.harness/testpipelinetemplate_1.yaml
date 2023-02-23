@@ -16,8 +16,16 @@ template:
           spec:
             deploymentType: Kubernetes
             service:
-              serviceRef: <+input>
-              serviceInputs: <+input>
+              serviceRef: k8service
+              serviceInputs:
+                serviceDefinition:
+                  type: Kubernetes
+                  spec:
+                    artifacts:
+                      primary:
+                        type: DockerRegistry
+                        spec:
+                          tag: <+input>.allowedValues(abcd)
             environment:
               environmentRef: <+input>
               deployToAll: false
