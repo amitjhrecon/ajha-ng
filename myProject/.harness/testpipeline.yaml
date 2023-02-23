@@ -1,0 +1,22 @@
+pipeline:
+  name: testpipeline
+  identifier: testpipeline
+  template:
+    templateRef: testpipelinetemplate
+    versionLabel: "1"
+    templateInputs:
+      stages:
+        - stage:
+            identifier: deploymentstage
+            type: Deployment
+            spec:
+              service:
+                serviceRef: <+input>
+                serviceInputs: <+input>
+              environment:
+                environmentRef: <+input>
+                environmentInputs: <+input>
+                infrastructureDefinitions: <+input>
+  tags: {}
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
