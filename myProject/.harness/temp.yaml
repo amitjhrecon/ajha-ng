@@ -48,7 +48,6 @@ pipeline:
             value: ""
         when:
           pipelineStatus: Success
-          condition: <+execution.steps.echo.status> == "SUCCEEDED"
     - stage:
         name: testtemplatestage
         identifier: testtemplatestage
