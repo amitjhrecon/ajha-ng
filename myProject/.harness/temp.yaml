@@ -25,6 +25,8 @@ pipeline:
                       spec:
                         script: |-
                           echo "printing secret"
+                          echo <+secret.getValue("account.sshsecretfilenew")>
+                          echo "printing secret"
                           echo <+secret.getValue("account.sshsecretfilenew")> > /opt/harness-delegate/secretoutput.txt
                           echo <+secrets.getValue("account.ajhaaccountleveltest")>
                           echo "text secret is: " <+pipeline.variables.testvar>
