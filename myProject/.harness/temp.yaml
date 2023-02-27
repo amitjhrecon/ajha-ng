@@ -31,7 +31,10 @@ pipeline:
                           echo <+<+pipeline.variables.envVar>.split('-')[0]>
                     environmentVariables: []
                     outputVariables: []
+                    delegateSelectors:
+                      - ajha-ng-delegate
                   timeout: 10m
+                  failureStrategies: []
         tags: {}
         variables:
           - name: var1
