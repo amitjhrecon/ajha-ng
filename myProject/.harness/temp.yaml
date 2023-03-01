@@ -31,6 +31,8 @@ pipeline:
                           echo <+secrets.getValue("account.ajhaaccountleveltest")>
                           echo "text secret is: " <+pipeline.variables.testvar>
                           echo <+<+pipeline.variables.envVar>.split('-')[0]>
+
+                          export res_ip="4.4.4.4"
                     environmentVariables: []
                     outputVariables: []
                     delegateSelectors:
