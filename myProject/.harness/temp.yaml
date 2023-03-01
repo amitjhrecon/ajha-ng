@@ -39,9 +39,9 @@ pipeline:
                           echo ${res_ip}
                     environmentVariables: []
                     outputVariables:
-                      - name: res_ip
+                      - name: test
                         type: String
-                        value: $res_ip
+                        value: res_ip
                     delegateSelectors:
                       - ajha-ng-delegate
                   timeout: 10m
