@@ -49,7 +49,11 @@ pipeline:
                     skipSteadyStateCheck: false
                     skipRendering: false
                     overrides: []
+                    commandFlags:
+                      - commandType: Apply
+                        flag: "--server-side"
                   timeout: 10m
+                  failureStrategies: []
               - step:
                   type: HarnessApproval
                   name: Harness Approval_1
