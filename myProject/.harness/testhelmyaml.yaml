@@ -1,0 +1,16 @@
+connector:
+  name: testhelmyaml
+  identifier: testhelmyaml
+  description: ""
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  type: HttpHelmRepo
+  spec:
+    helmRepoUrl: http://dumyrep.abc.com
+    auth:
+      type: UsernamePassword
+      spec:
+        username: testuser
+        passwordRef: testsecret
+    delegateSelectors:
+    - ajha-ng-delegate
