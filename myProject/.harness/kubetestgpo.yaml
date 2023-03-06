@@ -38,6 +38,9 @@ pipeline:
                   spec:
                     skipDryRun: false
                     pruningEnabled: false
+                    delegateSelectors:
+                      - testuseraccess
+                  failureStrategies: []
               - step:
                   type: K8sApply
                   name: Apply_1
