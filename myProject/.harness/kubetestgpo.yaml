@@ -62,7 +62,7 @@ pipeline:
                     skipDryRun: false
                     pruningEnabled: false
                     delegateSelectors:
-                      - testuseraccess
+                      - ajha-ng-delegate
                   failureStrategies: []
               - step:
                   type: K8sApply
