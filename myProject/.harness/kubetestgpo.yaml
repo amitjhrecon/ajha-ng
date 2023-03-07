@@ -46,6 +46,10 @@ pipeline:
                           echo "------"
 
                           echo <+serviceVariables.testvar2>
+
+                          echo "-----"
+
+                          echo <+serviceVariables.testvar3>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
