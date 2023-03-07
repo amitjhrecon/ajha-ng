@@ -19,6 +19,6 @@ connector:
       spec:
         tokenRef: ajhanggitlocal
     delegateSelectors:
-    - testuseraccess
+    - ajha-ng-delegate
     executeOnDelegate: true
     type: Repo
