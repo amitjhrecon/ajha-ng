@@ -45,7 +45,7 @@ pipeline:
 
                           echo "=====test====="
 
-                          echo <+artifacts.primary.tempartifact.image>
+                          echo <+artifacts.primary.tempartifact.imagePath>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
