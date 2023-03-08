@@ -47,7 +47,10 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo "test"
+                        script: |-
+                          echo "test"
+
+                          echo <+artifacts.primary.tempartifact.spec.imagePath>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
