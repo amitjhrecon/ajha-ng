@@ -1,0 +1,14 @@
+connector:
+  name: testaws
+  identifier: testaws
+  description: ""
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  type: Aws
+  spec:
+    credential:
+      type: Irsa
+      region: us-east-1
+    delegateSelectors:
+    - ajha-ng-delegate
+    executeOnDelegate: true
