@@ -112,3 +112,8 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+  variables:
+    - name: pathvar
+      type: String
+      description: ""
+      value: template
