@@ -39,7 +39,13 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo <+pipeline.variables.testvar>
+                        script: |
+                          echo <+pipeline.variables.testvar>
+
+
+                          echo "=====test====="
+
+                          echo <+artifacts.primary.tempartifact.image>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
