@@ -54,6 +54,10 @@ pipeline:
 
                           echo <+pipeline.stages.artifactstage.service.artifactservice.spec.artifacts.primary.tempartifact.imagePath>
 
+                          echo "****"
+
+                          echo <+artifacts.primary.imagePath>>
+
                           echo "======"
                           echo <+pipeline.stages.artifactstage.service.artifactservice.spec.artifacts.primary.secartifact.imagePath>
 
