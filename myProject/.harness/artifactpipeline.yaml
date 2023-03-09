@@ -50,6 +50,8 @@ pipeline:
                         script: |+
                           echo "test"
 
+                          echo <+stage.spec.serviceConfig.serviceDefinition.spec.artifacts.primary>
+
                           echo "======"
 
                           echo <+pipeline.stages.artifactstage.service.artifactservice.spec.artifacts.primary.tempartifact.imagePath>
