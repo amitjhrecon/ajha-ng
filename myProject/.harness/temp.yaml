@@ -37,7 +37,7 @@ pipeline:
                           echo "printing variable"
                     environmentVariables: []
                     outputVariables:
-                      - name: test
+                      - name: ipaddress
                         type: String
                         value: ipaddress
                     delegateSelectors:
