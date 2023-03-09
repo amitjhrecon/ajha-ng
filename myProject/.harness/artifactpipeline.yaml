@@ -78,3 +78,8 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+        variables:
+          - name: myvar
+            type: String
+            description: ""
+            value: adsaddsd
