@@ -53,7 +53,7 @@ pipeline:
                           echo "======"
                           echo <+artifacts>
                           echo "======"
-                          echo <+artifacts.primary>
+                          echo <+artifacts.primary.identifier>>
 
                           echo "======"
                           echo <+artifacts.primary.tempartifact>
