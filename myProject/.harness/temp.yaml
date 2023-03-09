@@ -32,7 +32,7 @@ pipeline:
                           echo "text secret is: " <+pipeline.variables.testvar>
                           echo <+<+pipeline.variables.envVar>.split('-')[0]>
 
-                          ipaddresss="4.4.4.4"
+                          ipaddress="4.4.4.4"
 
                           echo "printing variable"
                     environmentVariables: []
