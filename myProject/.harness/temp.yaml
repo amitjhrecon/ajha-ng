@@ -23,7 +23,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: |-
+                        script: |
                           echo "printing secret"
                           echo <+secret.getValue("account.sshsecretfilenew")>
                           echo "printing secret"
@@ -32,16 +32,14 @@ pipeline:
                           echo "text secret is: " <+pipeline.variables.testvar>
                           echo <+<+pipeline.variables.envVar>.split('-')[0]>
 
-                          export res_ip="4.4.4.4"
+                          ipaddresss="4.4.4.4"
 
                           echo "printing variable"
-
-                          echo ${res_ip}
                     environmentVariables: []
                     outputVariables:
                       - name: test
                         type: String
-                        value: res_ip
+                        value: ipaddress
                     delegateSelectors:
                       - ajha-ng-delegate
                   timeout: 10m
