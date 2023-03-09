@@ -58,7 +58,7 @@ pipeline:
 
                           echo "****"
 
-                          echo <+artifacts.primary.imagePath>>
+                          echo <+artifacts.primary.identifier.tempartifact.imagePath>
 
                           echo "======"
                           echo <+pipeline.stages.artifactstage.service.artifactservice.spec.artifacts.primary.secartifact.imagePath>
