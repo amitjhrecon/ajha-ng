@@ -51,12 +51,12 @@ pipeline:
                           echo "test"
 
                           echo "======"
-                          echo <+artifacts>
-                          echo "======"
-                          echo <+artifacts.primary.identifier>>
 
                           echo "======"
-                          echo <+artifacts.primary.tempartifact>
+                          echo <+artifacts.primary.identifier>
+
+                          echo "======"
+
 
                           echo "======"
 
