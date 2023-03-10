@@ -92,3 +92,26 @@ pipeline:
             type: String
             description: ""
             value: adsaddsd
+    - stage:
+        name: scriptstage
+        identifier: scriptstage
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: Shell Script_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo "testmultistage"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
