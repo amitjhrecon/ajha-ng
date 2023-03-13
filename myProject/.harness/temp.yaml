@@ -41,7 +41,7 @@ pipeline:
                     environmentVariables:
                       - name: testpath
                         type: String
-                        value: tmp/def
+                        value: /tmp/def
                     outputVariables:
                       - name: ipaddress
                         type: String
