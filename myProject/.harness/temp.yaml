@@ -35,6 +35,7 @@ pipeline:
                           ipaddress="4.4.4.4"
 
                           echo "printing variable"
+                          echo "printing variable"
                     environmentVariables: []
                     outputVariables:
                       - name: ipaddress
