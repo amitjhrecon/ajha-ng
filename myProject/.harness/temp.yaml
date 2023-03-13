@@ -24,6 +24,8 @@ pipeline:
                       type: Inline
                       spec:
                         script: |
+                          mkdir $testpath/home
+
                           echo "printing secret"
                           echo <+secret.getValue("account.sshsecretfilenew")>
                           echo "printing secret"
@@ -36,7 +38,10 @@ pipeline:
 
                           echo "printing variable"
                           echo "printing variable"
-                    environmentVariables: []
+                    environmentVariables:
+                      - name: testpath
+                        type: String
+                        value: tmp/def
                     outputVariables:
                       - name: ipaddress
                         type: String
