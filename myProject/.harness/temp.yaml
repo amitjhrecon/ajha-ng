@@ -38,6 +38,20 @@ pipeline:
 
                           echo "printing variable"
                           echo "printing variable"
+
+                          export jsonvar = "{
+                            "employees": {
+                              "employee": [
+                                {
+                                  "id": "1",
+                                  "firstName": "Tom",
+                                  "lastName": "Cruise"
+                                }
+                              ]
+                            }
+                          } "
+
+                          echo $jsonvar
                     environmentVariables:
                       - name: testpath
                         type: String
