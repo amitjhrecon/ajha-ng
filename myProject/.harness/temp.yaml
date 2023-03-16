@@ -14,19 +14,6 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: Http
-                  name: HTTP_1
-                  identifier: HTTP_1
-                  spec:
-                    url: https://httpbin.org/anything
-                    method: GET
-                    headers: []
-                    outputVariables:
-                      - name: hostname
-                        value: <+json.select(".headers.<+pipeline.variables.dummy>", httpResponseBody)>
-                        type: String
-                  timeout: 10s
-              - step:
                   type: ShellScript
                   name: dummy
                   identifier: dummy
@@ -37,6 +24,8 @@ pipeline:
                       type: Inline
                       spec:
                         script: |+
+                          echo <+pipeline.variables.testvar>
+
                           microdnf install jq
                           echo "printing secret"
                           echo <+secret.getValue("account.sshsecretfilenew")>
@@ -77,6 +66,19 @@ pipeline:
                       - ajha-ng-delegate
                   timeout: 10m
                   failureStrategies: []
+              - step:
+                  type: Http
+                  name: HTTP_1
+                  identifier: HTTP_1
+                  spec:
+                    url: https://httpbin.org/anything
+                    method: GET
+                    headers: []
+                    outputVariables:
+                      - name: hostname
+                        value: <+json.select(".headers.<+pipeline.variables.dummy>", httpResponseBody)>
+                        type: String
+                  timeout: 10s
         tags: {}
         variables:
           - name: var1
@@ -123,7 +125,7 @@ pipeline:
       type: String
       default: ""
       description: ""
-      value: hgjgj
+      value: <+pipeline.variables.dummy>
     - name: envVar
       type: String
       description: ""
