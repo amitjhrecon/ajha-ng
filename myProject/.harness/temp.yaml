@@ -49,7 +49,7 @@ pipeline:
 
                           echo "using functor"
 
-                          echo <+json.select("bucketname",${JSON_STRING})>
+                          echo <+json.select(".bucketname",${JSON_STRING})>
 
 
                     environmentVariables:
