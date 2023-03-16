@@ -24,8 +24,6 @@ pipeline:
                       type: Inline
                       spec:
                         script: |
-                          mkdir $testpath/home
-
                           echo "printing secret"
                           echo <+secret.getValue("account.sshsecretfilenew")>
                           echo "printing secret"
@@ -39,17 +37,7 @@ pipeline:
                           echo "printing variable"
                           echo "printing variable"
 
-                          export jsonvar = "{
-                            "employees": {
-                              "employee": [
-                                {
-                                  "id": "1",
-                                  "firstName": "Tom",
-                                  "lastName": "Cruise"
-                                }
-                              ]
-                            }
-                          } "
+                          export jsonvar = "{/"employees/": {/"employee/": [{/"id/": /"1/",/"firstName/": /"Tom/",/"lastName/": /"Cruise/"}]}} "
 
                           echo $jsonvar
                     environmentVariables:
