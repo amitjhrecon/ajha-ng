@@ -23,7 +23,7 @@ pipeline:
                     headers: []
                     outputVariables:
                       - name: hostname
-                        value: <+json.select(".headers.Host", httpResponseBody)>
+                        value: <+json.select(".headers.<+pipeline.variables.dummy>", httpResponseBody)>
                         type: String
                   timeout: 10s
               - step:
@@ -131,4 +131,4 @@ pipeline:
     - name: dummy
       type: String
       description: ""
-      value: dadadsdas
+      value: Host
