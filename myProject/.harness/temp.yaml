@@ -21,7 +21,10 @@ pipeline:
                     url: https://httpbin.org/anything
                     method: GET
                     headers: []
-                    outputVariables: []
+                    outputVariables:
+                      - name: hostname
+                        value: <+json.select(".headers.Host", httpResponseBody)>
+                        type: String
                   timeout: 10s
               - step:
                   type: ShellScript
