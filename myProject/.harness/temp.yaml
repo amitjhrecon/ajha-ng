@@ -24,6 +24,7 @@ pipeline:
                       type: Inline
                       spec:
                         script: |+
+                          microdnf install jq
                           echo "printing secret"
                           echo <+secret.getValue("account.sshsecretfilenew")>
                           echo "printing secret"
