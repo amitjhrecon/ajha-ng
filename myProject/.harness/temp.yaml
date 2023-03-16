@@ -23,7 +23,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: |
+                        script: |+
                           echo "printing secret"
                           echo <+secret.getValue("account.sshsecretfilenew")>
                           echo "printing secret"
@@ -34,11 +34,19 @@ pipeline:
 
                           ipaddress="4.4.4.4"
 
-                          echo "printing variable"
-                          echo "printing variable"
+                          BUCKET_NAME=testbucket
+                          OBJECT_NAME=testworkflow-2.0.1.jar
+                          TARGET_LOCATION=/opt/test/testworkflow-2.0.1.jar
 
-                          export jsonvar = '{"employees": {"employee": [{"id": "1","firstName": "Tom","lastName": "Cruise"}]}} '
-                          echo $jsonvar
+                          JSON_STRING=$( jq -n \
+                                            --arg bn "$BUCKET_NAME" \
+                                            --arg on "$OBJECT_NAME" \
+                                            --arg tl "$TARGET_LOCATION" \
+                                            '{bucketname: $bn, objectname: $on, targetlocation: $tl}' )
+
+                          echo $JSON_STRING                  
+
+
                     environmentVariables:
                       - name: testpath
                         type: String
