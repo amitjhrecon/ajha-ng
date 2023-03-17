@@ -24,6 +24,7 @@ pipeline:
                       type: Inline
                       spec:
                         script: |+
+                          echo <+<+pipeline.variables.somevar>.replace('_','-')>
                           echo <+pipeline.variables.testvar>
 
                           microdnf install jq
@@ -134,3 +135,7 @@ pipeline:
       type: String
       description: ""
       value: Host
+    - name: somevar
+      type: String
+      description: ""
+      value: abcd_efgh
