@@ -36,24 +36,14 @@ pipeline:
                           echo "text secret is: " <+pipeline.variables.testvar>
                           echo <+<+pipeline.variables.envVar>.split('-')[0]>
 
-                          ipaddress="4.4.4.4"
+                          printInfo
 
-                          BUCKET_NAME=testbucket
-                          OBJECT_NAME=testworkflow-2.0.1.jar
-                          TARGET_LOCATION=/opt/test/testworkflow-2.0.1.jar
+                          function printInfo()
+                          {
 
-                          JSON_STRING=$( jq -n \
-                                            --arg bn "$BUCKET_NAME" \
-                                            --arg on "$OBJECT_NAME" \
-                                            --arg tl "$TARGET_LOCATION" \
-                                            '{bucketname: $bn, objectname: $on, targetlocation: $tl}' )
+                          echo "printing info"
 
-                          echo $JSON_STRING    
-
-                          echo "using functor"
-
-                          echo <+json.select(".bucketname",${JSON_STRING})>
-
+                          }
 
                     environmentVariables:
                       - name: testpath
