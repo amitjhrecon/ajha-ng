@@ -30,14 +30,6 @@ pipeline:
           execution:
             steps:
               - step:
-                  name: Rollout Deployment
-                  identifier: rolloutDeployment
-                  type: K8sRollingDeploy
-                  timeout: 10m
-                  spec:
-                    skipDryRun: false
-                    pruningEnabled: false
-              - step:
                   type: ShellScript
                   name: Shell Script_1
                   identifier: ShellScript_1
@@ -49,6 +41,8 @@ pipeline:
                       spec:
                         script: |+
                           echo "test"
+
+                          echo <+secrest.getValue(<"testsecret_".concat<+env.name>>)>
 
                           echo <+stage.spec.serviceConfig.serviceDefinition.spec.artifacts.primary>
 
@@ -72,6 +66,14 @@ pipeline:
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
+              - step:
+                  name: Rollout Deployment
+                  identifier: rolloutDeployment
+                  type: K8sRollingDeploy
+                  timeout: 10m
+                  spec:
+                    skipDryRun: false
+                    pruningEnabled: false
             rollbackSteps:
               - step:
                   name: Rollback Rollout Deployment
