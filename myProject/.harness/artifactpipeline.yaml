@@ -42,7 +42,7 @@ pipeline:
                         script: |+
                           echo "test"
 
-                          echo <+secrest.getValue(<"testsecret_".concat<+env.name>>)>
+                          echo <+secrest.getValue(<"testsecret_".concat(<+env.name>)>)>
 
                           echo <+stage.spec.serviceConfig.serviceDefinition.spec.artifacts.primary>
 
