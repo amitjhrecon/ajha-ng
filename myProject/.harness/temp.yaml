@@ -36,14 +36,16 @@ pipeline:
                           echo "text secret is: " <+pipeline.variables.testvar>
                           echo <+<+pipeline.variables.envVar>.split('-')[0]>
 
-                          printInfo
-
                           function printInfo()
                           {
 
                           echo "printing info"
 
                           }
+
+                          printInfo
+
+
 
                     environmentVariables:
                       - name: testpath
