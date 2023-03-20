@@ -44,6 +44,8 @@ pipeline:
 
                           echo <+secrest.getValue(<"testsecret_".concat(<+env.name>)>)>
 
+                          <+secrets.getValue("test_secret_".concat(<+env.name>))>
+
                           echo <+stage.spec.serviceConfig.serviceDefinition.spec.artifacts.primary>
 
                           echo "======"
