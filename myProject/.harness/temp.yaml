@@ -26,7 +26,10 @@ pipeline:
                         script: |+
                           echo <+<+pipeline.variables.somevar>.replace('_','-')>
                           echo <+pipeline.variables.testvar>
-
+                          foo=$(echo "bar")
+                          cat <<_EOF_
+                          $foo
+                          _EOF_
                           microdnf install jq
                           echo "printing secret"
                           echo <+secret.getValue("account.sshsecretfilenew")>
