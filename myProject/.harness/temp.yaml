@@ -24,6 +24,8 @@ pipeline:
                       type: Inline
                       spec:
                         script: |+
+                          foo=$(echo "foo & bar" | tee /dev/tty)
+
                           echo <+<+pipeline.variables.somevar>.replace('_','-')>
                           echo <+pipeline.variables.testvar>
                           foo=$(echo "bar")
