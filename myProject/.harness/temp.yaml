@@ -25,7 +25,9 @@ pipeline:
                       spec:
                         script: |+
                           echo "focus here"
-                          foo=$(echo "foo & bar" | tee /dev/tty1 )
+                          foo=$(echo "foo & bar" | tee /dev/null )
+
+                          echo "end focus"
 
                           echo <+<+pipeline.variables.somevar>.replace('_','-')>
                           echo <+pipeline.variables.testvar>
