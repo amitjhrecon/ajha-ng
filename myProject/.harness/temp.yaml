@@ -14,6 +14,16 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: Http
+                  name: test http step
+                  identifier: test_http_step
+                  spec:
+                    url: https://httpbin.org/anything
+                    method: GET
+                    headers: []
+                    outputVariables: []
+                  timeout: 10s
+              - step:
                   type: ShellScript
                   name: dummy
                   identifier: dummy
