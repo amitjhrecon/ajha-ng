@@ -18,7 +18,7 @@ pipeline:
                   name: test http step
                   identifier: test_http_step
                   spec:
-                    url: https://httpbin.org/anything
+                    url: https://httpbin.org/anything/<+pipeline.variables.dummy>
                     method: GET
                     headers: []
                     outputVariables: []
@@ -144,7 +144,7 @@ pipeline:
     - name: dummy
       type: String
       description: ""
-      value: Host
+      value: with space
     - name: somevar
       type: String
       description: ""
