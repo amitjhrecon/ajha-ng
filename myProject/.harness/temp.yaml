@@ -14,15 +14,19 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: Http
-                  name: test http step
-                  identifier: test_http_step
+                  type: ShellScript
+                  name: scriptoutput
+                  identifier: scriptoutput
                   spec:
-                    url: https://httpbin.org/anything/<+pipeline.variables.dummy>
-                    method: GET
-                    headers: []
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: yes "$(seq 1 20)" | while read counter; do echo $counter; sleep 30; done
+                    environmentVariables: []
                     outputVariables: []
-                  timeout: 10s
+                  timeout: 10m
               - step:
                   type: ShellScript
                   name: dummy
