@@ -137,4 +137,4 @@ pipeline:
     - name: convar
       type: String
       description: ""
-      value: qa
+      value: testqaconnector
