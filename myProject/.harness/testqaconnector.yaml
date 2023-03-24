@@ -1,5 +1,5 @@
 connector:
-  name: testqaconnector
+  name: qa
   identifier: testqaconnector
   description: ""
   orgIdentifier: CSE
