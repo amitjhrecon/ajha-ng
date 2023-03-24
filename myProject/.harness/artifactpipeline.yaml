@@ -133,3 +133,8 @@ pipeline:
                     outputVariables: []
                   timeout: 10m
         tags: {}
+  variables:
+    - name: convar
+      type: String
+      description: ""
+      value: qa
