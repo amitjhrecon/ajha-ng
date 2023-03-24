@@ -23,7 +23,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: yes "$(seq 1 20)" | while read counter; do echo $counter; sleep 30; done
+                        script: foo=$(echo "bar" | tee /dev/tty)
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
