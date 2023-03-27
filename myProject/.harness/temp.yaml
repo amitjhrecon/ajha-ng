@@ -21,10 +21,7 @@ pipeline:
                     url: <+pipeline.variables.dummy>
                     method: GET
                     headers: []
-                    outputVariables:
-                      - name: hostname
-                        value: <+json.select(".headers.<+pipeline.variables.dummy>", httpResponseBody)>
-                        type: String
+                    outputVariables: []
                   timeout: 10s
               - step:
                   type: ShellScript
