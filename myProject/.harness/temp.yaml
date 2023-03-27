@@ -14,6 +14,19 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: Http
+                  name: HTTP_1
+                  identifier: HTTP_1
+                  spec:
+                    url: <+pipeline.variables.dummy>
+                    method: GET
+                    headers: []
+                    outputVariables:
+                      - name: hostname
+                        value: <+json.select(".headers.<+pipeline.variables.dummy>", httpResponseBody)>
+                        type: String
+                  timeout: 10s
+              - step:
                   type: ShellScript
                   name: scriptoutput
                   identifier: scriptoutput
@@ -84,19 +97,6 @@ pipeline:
                       - ajha-ng-delegate
                   timeout: 10m
                   failureStrategies: []
-              - step:
-                  type: Http
-                  name: HTTP_1
-                  identifier: HTTP_1
-                  spec:
-                    url: <+pipeline.variables.dummy>
-                    method: GET
-                    headers: []
-                    outputVariables:
-                      - name: hostname
-                        value: <+json.select(".headers.<+pipeline.variables.dummy>", httpResponseBody)>
-                        type: String
-                  timeout: 10s
         tags: {}
         variables:
           - name: var1
