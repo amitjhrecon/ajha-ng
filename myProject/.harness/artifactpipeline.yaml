@@ -49,7 +49,7 @@ pipeline:
                   name: Rollout Deployment
                   identifier: rolloutDeployment
                   type: K8sRollingDeploy
-                  timeout: 15s
+                  timeout: 10s
                   spec:
                     skipDryRun: false
                     pruningEnabled: false
