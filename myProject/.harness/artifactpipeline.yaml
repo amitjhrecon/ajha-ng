@@ -73,6 +73,8 @@ pipeline:
             type: String
             description: ""
             value: adsaddsd
+        when:
+          pipelineStatus: All
     - stage:
         name: scriptstage
         identifier: scriptstage
