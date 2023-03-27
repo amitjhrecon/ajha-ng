@@ -89,7 +89,7 @@ pipeline:
                   name: HTTP_1
                   identifier: HTTP_1
                   spec:
-                    url: https://httpbin.org/anything
+                    url: <+pipeline.variables.dummy>
                     method: GET
                     headers: []
                     outputVariables:
@@ -151,7 +151,7 @@ pipeline:
     - name: dummy
       type: String
       description: ""
-      value: with space
+      value: https://httpbin.org?test=some name
     - name: somevar
       type: String
       description: ""
