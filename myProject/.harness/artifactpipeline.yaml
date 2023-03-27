@@ -42,22 +42,22 @@ pipeline:
                         script: |+
                           echo "test"
 
-                          echo <+secrest.getValue(<"testsecret_".concat(<+env.name>)>)>
+                          #echo <+secrest.getValue(<"testsecret_".concat(<+env.name>)>)>
 
-                          <+secrets.getValue("test_secret_".concat(<+env.name>))>
+                          #<+secrets.getValue("test_secret_".concat(<+env.name>))>
 
-                          echo <+stage.spec.serviceConfig.serviceDefinition.spec.artifacts.primary>
+                          #echo <+stage.spec.serviceConfig.serviceDefinition.spec.artifacts.primary>
 
                           echo "======"
 
-                          echo <+pipeline.stages.artifactstage.service.artifactservice.spec.artifacts.primary.tempartifact.imagePath>
+                          #echo <+pipeline.stages.artifactstage.service.artifactservice.spec.artifacts.primary.tempartifact.imagePath>
 
                           echo "****"
 
-                          echo <+artifacts.primary.identifier.tempartifact.imagePath>
+                          #echo <+artifacts.primary.identifier.tempartifact.imagePath>
 
                           echo "======"
-                          echo <+pipeline.stages.artifactstage.service.artifactservice.spec.artifacts.primary.secartifact.imagePath>
+                          #echo <+pipeline.stages.artifactstage.service.artifactservice.spec.artifacts.primary.secartifact.imagePath>
 
 
                           echo "======"
