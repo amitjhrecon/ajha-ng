@@ -120,4 +120,4 @@ pipeline:
     - name: dummy
       type: String
       description: ""
-      value: nginx
+      value: "8"
