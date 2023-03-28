@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kafkacli-job
+  namespace: eai-pnr-linking-dev
+
+spec:
+  template:
+    spec:
+      containers:
+      - name: kafkacli
+        image: artifactory.ual.com:443/v-docker/software-engineering/tools/kafka-cli:v0.2.0
+        #command: [ "tail", "-f" ]
+        command: ["bash"]
+        args: ["kafka-topics.sh" , "--create" , "--topic" , "harness-test-topic" , "--zookeeper" , "z-1.eaipnrlinkingmskuseast.39sgdm.c8.kafka.us-east-1.amazonaws.com:2181" , "--partitions" , {{ .Values.partitions }} ,"--replication-factor" , "3"]
+      restartPolicy: Never
+  backoffLimit: 0
