@@ -117,3 +117,7 @@ pipeline:
       type: String
       description: ""
       value: qa
+    - name: dummy
+      type: String
+      description: ""
+      value: nginx
