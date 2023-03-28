@@ -14,7 +14,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: <+pipeline.variables.dummy>
+      - image: {{ .Values.imagename }}
         name: nginx
         ports:
         - containerPort: 8080
