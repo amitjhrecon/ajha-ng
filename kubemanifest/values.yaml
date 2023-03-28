@@ -1,6 +1,6 @@
 name: <+stage.name>  
 imagename: <+pipeline.variables.dummy>
-partitions: 5
+partitions: <+pipeline.variables.dummy>
 replicas: 2  
   
 image: <+artifact.image>  
