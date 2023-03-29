@@ -6,6 +6,33 @@ pipeline:
   tags: {}
   stages:
     - stage:
+        name: testterraform
+        identifier: testterraform
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: TerraformPlan
+                  name: TerraformPlan_1
+                  identifier: TerraformPlan_1
+                  spec:
+                    provisionerIdentifier: testtf
+                    configuration:
+                      command: Apply
+                      configFiles:
+                        store:
+                          spec:
+                            connectorRef: ajhagitmanifest
+                            gitFetchType: Branch
+                            branch: main
+                            folderPath: terraform
+                          type: Github
+                      secretManagerRef: harnessSecretManager
+                  timeout: 10m
+        tags: {}
+    - stage:
         name: teststage
         identifier: teststage
         description: ""
