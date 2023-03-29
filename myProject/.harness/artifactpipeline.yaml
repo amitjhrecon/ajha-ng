@@ -23,10 +23,10 @@ pipeline:
                       primaryArtifactRef: <+input>
                       sources: <+input>
           environment:
-            environmentRef: dev
+            environmentRef: <+pipeline.variables.dummy>
             deployToAll: false
             infrastructureDefinitions:
-              - identifier: dummy
+              - identifier: <+pipeline.variables.convar>
           execution:
             steps:
               - step:
@@ -120,4 +120,4 @@ pipeline:
     - name: dummy
       type: String
       description: ""
-      value: "8"
+      value: Dev
