@@ -6,6 +6,45 @@ pipeline:
   tags: {}
   stages:
     - stage:
+        name: scriptstage
+        identifier: scriptstage
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: Shell Script_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          echo "testmultistage"
+                          echo <+somevaribale.which.does.not.exist>
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+              - step:
+                  type: ShellScript
+                  name: step2
+                  identifier: step2
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo "testmulti stage"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
+    - stage:
         name: artifactstage
         identifier: artifactstage
         description: ""
@@ -75,43 +114,6 @@ pipeline:
             value: adsaddsd
         when:
           pipelineStatus: All
-    - stage:
-        name: scriptstage
-        identifier: scriptstage
-        description: ""
-        type: Custom
-        spec:
-          execution:
-            steps:
-              - step:
-                  type: ShellScript
-                  name: Shell Script_1
-                  identifier: ShellScript_1
-                  spec:
-                    shell: Bash
-                    onDelegate: true
-                    source:
-                      type: Inline
-                      spec:
-                        script: echo "testmultistage"
-                    environmentVariables: []
-                    outputVariables: []
-                  timeout: 10m
-              - step:
-                  type: ShellScript
-                  name: step2
-                  identifier: step2
-                  spec:
-                    shell: Bash
-                    onDelegate: true
-                    source:
-                      type: Inline
-                      spec:
-                        script: echo "testmulti stage"
-                    environmentVariables: []
-                    outputVariables: []
-                  timeout: 10m
-        tags: {}
   variables:
     - name: convar
       type: String
