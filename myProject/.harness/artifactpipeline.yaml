@@ -25,6 +25,7 @@ pipeline:
                       spec:
                         script: |-
                           echo "testmultistage"
+                          echo <+steps.get_current_replicas.output.outputVariables.PodCount>*<+serviceVariables.CanaryPercentage.split(',')[4]>/100
                           echo <+somevaribale.which.does.not.exist>
                     environmentVariables: []
                     outputVariables: []
