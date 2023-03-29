@@ -85,6 +85,7 @@ pipeline:
                       spec:
                         script: |+
                           echo "test"
+                          env
 
                     environmentVariables: []
                     outputVariables: []
