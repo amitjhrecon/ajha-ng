@@ -44,9 +44,9 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: |-
+                        script: |
                           echo "testmulti stage"
-                          echo <+pipeline.delegateSelectors>
+                          echo <+pipeline.delegateSelectors[0].delegateSelectors>
                     environmentVariables: []
                     outputVariables: []
                     delegateSelectors:
