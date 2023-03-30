@@ -28,7 +28,7 @@ pipeline:
                           cat <<EOF >>longscript$value.sh
                           #!/bin/bash
                           start=$value
-                          end=$(($value+7))
+                          end=$(($value+30))
                           echo "this is $value"
                           while [ \$start -le \$end ]; do
                               echo \$start;
