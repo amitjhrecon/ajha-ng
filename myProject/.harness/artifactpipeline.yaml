@@ -93,7 +93,7 @@ pipeline:
                       spec:
                         script: |+
                           echo "test"
-                          echo <+serviceVariables.servicevar>
+                          echo <+serviceVariables>
 
                     environmentVariables: []
                     outputVariables: []
