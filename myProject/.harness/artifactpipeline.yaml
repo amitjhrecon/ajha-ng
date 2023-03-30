@@ -47,7 +47,10 @@ pipeline:
                         script: echo "testmulti stage"
                     environmentVariables: []
                     outputVariables: []
+                    delegateSelectors:
+                      - groupdelegate
                   timeout: 10m
+                  failureStrategies: []
         tags: {}
     - stage:
         name: artifactstage
