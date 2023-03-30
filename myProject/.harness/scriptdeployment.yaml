@@ -1,0 +1,73 @@
+pipeline:
+  name: scriptdeployment
+  identifier: scriptdeployment
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  stages:
+    - stage:
+        name: deploy
+        identifier: deploy
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: Ssh
+          service:
+            serviceRef: testsvc
+          environment:
+            environmentRef: testenv
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: pdcinfra
+          execution:
+            steps:
+              - step:
+                  type: Command
+                  name: Command_1
+                  identifier: Command_1
+                  spec:
+                    onDelegate: true
+                    environmentVariables: []
+                    outputVariables: []
+                    commandUnits:
+                      - identifier: test
+                        name: test
+                        type: Script
+                        spec:
+                          shell: Bash
+                          source:
+                            type: Inline
+                            spec:
+                              script: |-
+                                echo "Hello World"
+                                env
+                  timeout: 10m
+                  failureStrategies: []
+                  strategy:
+                    repeat:
+                      items: <+stage.output.hosts>
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    onDelegate: false
+                    source:
+                      type: Inline
+                      spec:
+                        script: env
+                    environmentVariables: []
+                    outputVariables: []
+                    executionTarget:
+                      connectorRef: ec252201252114compute1amazonawscomcreds
+                      host: ec2-52-201-252-114.compute-1.amazonaws.com
+                  timeout: 10m
+            rollbackSteps: []
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
