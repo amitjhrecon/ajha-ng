@@ -1,0 +1,52 @@
+pipeline:
+  name: testTeePipeline
+  identifier: testTeePipeline
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  stages:
+    - stage:
+        name: testTee
+        identifier: testTee
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          value=$RANDOM
+                          cat <<EOF >>longscript$value.sh
+                          #!/bin/bash
+                          start=$value
+                          end=$(($value+7))
+                          echo "this is $value"
+                          while [ \$start -le \$end ]; do
+                              echo \$start;
+                              start=\$(( \$start+1 ));
+                              sleep 1;
+                          done
+                          EOF
+                          chmod +x ./longscript$value.sh
+
+                          echo "tee output parallel $value of $0"
+                          shell_pid=$(pgrep -f $0)
+                          foo=$(./longscript$value.sh | tee /proc/$shell_pid/fd/1)
+
+
+                          rm longscript$value.sh
+                          echo "var output $value"
+                          echo $foo
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
