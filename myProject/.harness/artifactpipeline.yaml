@@ -46,6 +46,9 @@ pipeline:
                       spec:
                         script: |
                           echo "testmulti stage"
+
+                          echo <+serviceVariables>
+
                           echo <+pipeline.delegateSelectors[0].delegateSelectors>
                     environmentVariables: []
                     outputVariables: []
