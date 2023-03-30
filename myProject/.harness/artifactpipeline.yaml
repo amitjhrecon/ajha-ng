@@ -67,7 +67,7 @@ pipeline:
                       primaryArtifactRef: <+input>
                       sources: <+input>
           environment:
-            environmentRef: <+input>
+            environmentRef: <+pipeline.pipeline.variables.dummy>
             deployToAll: false
             environmentInputs: <+input>
             serviceOverrideInputs: <+input>
