@@ -46,7 +46,7 @@ pipeline:
                       spec:
                         script: |-
                           echo "testmulti stage"
-                          <+pipeline.stages.scriptstage.spec.execution.steps.step2.spec.delegateSelectors>
+                          echo <+pipeline.delegateSelectors>
                     environmentVariables: []
                     outputVariables: []
                     delegateSelectors:
