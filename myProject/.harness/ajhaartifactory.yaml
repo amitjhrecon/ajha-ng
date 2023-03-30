@@ -1,0 +1,17 @@
+connector:
+  name: ajhaartifactory
+  identifier: ajhaartifactory
+  description: ""
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  type: Artifactory
+  spec:
+    artifactoryServerUrl: https://harness.jfrog.io/artifactory/
+    auth:
+      type: UsernamePassword
+      spec:
+        username: usheerfotedar
+        passwordRef: ajhaartifactorysecret
+    delegateSelectors:
+    - groupdelegate
+    executeOnDelegate: true
