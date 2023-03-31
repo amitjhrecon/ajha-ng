@@ -92,20 +92,13 @@ pipeline:
                       type: Inline
                       spec:
                         script: |+
-                          echo "test"
+                          myvar4=`echo $myvar3 | sed 's/{//g'`
 
-
-                          export myvar4=`echo "def,geh,ijkl"`
                           echo $myvar4
-                          echo <+$myvar4.split(',')[1]>
-
-                          echo <+"echo <+serviceVariables>".split(,)>
-
-                          echo $myvar2
 
 
                     environmentVariables:
-                      - name: myvar
+                      - name: myvar3
                         type: String
                         value: <+serviceVariables>
                     outputVariables: []
