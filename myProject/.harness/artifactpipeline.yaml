@@ -92,10 +92,9 @@ pipeline:
                       type: Inline
                       spec:
                         script: |+
-                          myvar4=`echo $myvar3 | sed 's/{//g'`
+                          myvar4=`echo $myvar3 | sed 's/{//g' | sed 's/}//g'`
 
                           echo $myvar4
-
 
                     environmentVariables:
                       - name: myvar3
