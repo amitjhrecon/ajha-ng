@@ -94,9 +94,9 @@ pipeline:
                         script: |+
                           echo "test"
 
-                          export myvar2 = `echo $myvar | tr -d '{'`
 
-                          echo <+$myvar2.split('.')[1]>
+
+                          echo <+$myvar.split('.')[1]>
 
                           echo $myvar2
 
