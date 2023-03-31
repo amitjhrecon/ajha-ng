@@ -94,7 +94,10 @@ pipeline:
                         script: |+
                           myvar4=`echo $myvar3 | sed 's/{//g' | sed 's/}//g'`
 
-                          echo $myvar4
+                          for i in ${myvar4//,/ }
+                          do
+                              echo "$i"
+                          done
 
                     environmentVariables:
                       - name: myvar3
