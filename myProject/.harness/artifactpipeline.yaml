@@ -96,7 +96,7 @@ pipeline:
 
 
 
-                          echo <+$myvar.split('.')[1]>
+                          echo <+"def,geh,ijkl".split(',')[1]>
 
                           echo $myvar2
 
