@@ -96,6 +96,7 @@ pipeline:
 
 
                           export myvar4=`echo "def,geh,ijkl"`
+                          echo $myvar4
                           echo <+$myvar4.split(',')[1]>
 
                           echo $myvar2
