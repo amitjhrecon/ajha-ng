@@ -93,7 +93,7 @@ pipeline:
                       spec:
                         script: |+
                           echo "test"
-                          echo <+serviceVariables>
+                          echo $myvar
 
                           echo <+<+serviceVariables>.replace('{','')>
 
@@ -104,7 +104,7 @@ pipeline:
                     environmentVariables:
                       - name: myvar
                         type: String
-                        value: <+<+serviceVariables>.replace('{','')>
+                        value: <+serviceVariables>
                     outputVariables: []
                   timeout: 10m
               - step:
