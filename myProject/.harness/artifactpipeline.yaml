@@ -95,6 +95,10 @@ pipeline:
                           echo "test"
                           echo <+serviceVariables>
 
+                          myvar = <+serviceVariables>.replace('{','')
+
+                          echo $myvar
+
                           echo <+serviceVariables.serviceVariables[0]>
 
                     environmentVariables: []
