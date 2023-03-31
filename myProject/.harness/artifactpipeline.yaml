@@ -95,6 +95,8 @@ pipeline:
                           echo "test"
                           echo <+serviceVariables>
 
+                          echo <+serviceVariables.serviceVariables[0]>
+
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
