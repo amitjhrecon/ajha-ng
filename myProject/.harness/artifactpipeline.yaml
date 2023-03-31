@@ -99,6 +99,8 @@ pipeline:
                           echo $myvar4
                           echo <+$myvar4.split(',')[1]>
 
+                          echo <+"echo <+serviceVariables>".split(,)>
+
                           echo $myvar2
 
 
