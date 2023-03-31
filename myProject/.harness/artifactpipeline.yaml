@@ -95,10 +95,11 @@ pipeline:
                           echo "test"
                           echo <+serviceVariables>
 
+                          echo <+<+serviceVariables>.replace('{','')>
 
                           echo $myvar
 
-                          echo <+serviceVariables.serviceVariables[0]>
+
 
                     environmentVariables:
                       - name: myvar
