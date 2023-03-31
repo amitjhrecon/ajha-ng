@@ -95,7 +95,7 @@ pipeline:
                           echo "test"
                           echo <+serviceVariables>
 
-                          myvar = <+serviceVariables>.replace('{','')
+                          myvar = <+<+serviceVariables>.replace('{','')>
 
                           echo $myvar
 
