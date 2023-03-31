@@ -94,7 +94,7 @@ pipeline:
                         script: |+
                           echo "test"
 
-                          myvar2 = echo $myvar | tr -d '{'
+                          export myvar2 = `echo $myvar | tr -d '{'`
 
 
                           echo $myvar2
