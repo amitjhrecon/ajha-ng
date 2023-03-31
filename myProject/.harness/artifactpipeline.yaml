@@ -93,12 +93,11 @@ pipeline:
                       spec:
                         script: |+
                           echo "test"
-                          echo $myvar
 
-                          echo <+<+serviceVariables>.replace('{','')>
+                          myvar2 = echo $myvar | tr -d '{'
 
-                          echo $myvar
 
+                          echo $myvar2
 
 
                     environmentVariables:
