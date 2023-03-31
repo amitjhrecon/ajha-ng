@@ -95,7 +95,7 @@ pipeline:
                           echo "test"
 
 
-                          export myvar4 = {echo "def,geh,ijkl"}
+                          export myvar4 = `echo "def,geh,ijkl"`
                           echo <+$myvar4.split(',')[1]>
 
                           echo $myvar2
