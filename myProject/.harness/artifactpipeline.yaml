@@ -146,3 +146,4 @@ pipeline:
       value: <+input>
   delegateSelectors:
     - groupdelegate
+  allowStageExecutions: true
