@@ -91,14 +91,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: |+
-                          myvar4=`echo $myvar3 | sed 's/{//g' | sed 's/}//g'`
-
-                          for i in ${myvar4//, / }
-                          do
-                              echo "$i"
-                          done
-
+                        script: "str=`echo $myvar3 | sed 's/{//g' | sed 's/}//g'`\ndelimiter=\", \"\ns=$str$delimiter\narray=();\narray=();\nwhile [[ $s ]]; do\n\tarray+=( \"${s%%\"$delimiter\"*}\" );\n\ts=${s#*\"$delimiter\"};\ndone;\ndeclare -p array\n\n"
                     environmentVariables:
                       - name: myvar3
                         type: String
