@@ -46,4 +46,4 @@ template:
       - name: variable1
         type: String
         description: ""
-        value: dummyvalue
+        value: <+input>
