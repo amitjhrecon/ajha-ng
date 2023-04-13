@@ -1,0 +1,25 @@
+pipeline:
+  name: testpipelinetemplate
+  identifier: testpipelinetemplate
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  stages:
+    - stage:
+        name: fgfgf
+        identifier: fgfgf
+        template:
+          templateRef: testtemplatestage
+          versionLabel: "1"
+          templateInputs:
+            type: Deployment
+            spec:
+              environment:
+                environmentRef: <+input>
+                environmentInputs: <+input>
+                serviceOverrideInputs: <+input>
+                infrastructureDefinitions: <+input>
+            variables:
+              - name: variable1
+                type: String
+                value: <+input>
