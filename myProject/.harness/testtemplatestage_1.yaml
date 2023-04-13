@@ -43,3 +43,8 @@ template:
             - AllErrors
           action:
             type: StageRollback
+    variables:
+      - name: variable1
+        type: String
+        description: ""
+        value: dummyvalue
