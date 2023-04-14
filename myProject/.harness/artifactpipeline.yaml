@@ -133,7 +133,7 @@ pipeline:
     - name: dummy1
       type: String
       description: ""
-      value: ajhagit
+      value: dummy2
     - name: dummy2
       type: String
       description: ""
