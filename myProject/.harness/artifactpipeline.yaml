@@ -130,10 +130,14 @@ pipeline:
       type: String
       description: ""
       value: qa
-    - name: dummy
+    - name: dummy1
       type: String
       description: ""
-      value: <+input>
+      value: ajhagit
+    - name: dummy2
+      type: String
+      description: ""
+      value: manifest
   delegateSelectors:
     - groupdelegate
   allowStageExecutions: true
