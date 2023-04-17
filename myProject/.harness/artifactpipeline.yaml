@@ -72,6 +72,13 @@ pipeline:
                       sources: <+input>
           environment:
             environmentRef: dev
+            environmentInputs:
+              identifier: dev
+              type: PreProduction
+              variables:
+                - name: connectorenv
+                  type: String
+                  value: <+input>
             deployToAll: false
             infrastructureDefinitions:
               - identifier: qa
