@@ -144,6 +144,10 @@ pipeline:
       type: String
       description: ""
       value: manifest
+    - name: test
+      type: String
+      description: ""
+      value: <+input>
   delegateSelectors:
     - groupdelegate
   allowStageExecutions: true
