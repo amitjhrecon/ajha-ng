@@ -14,19 +14,6 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: Http
-                  name: Http_1
-                  identifier: Http_1
-                  spec:
-                    url: http://ip.jsontest.com/
-                    method: GET
-                    headers: []
-                    outputVariables:
-                      - name: testvar
-                        value: <+json.object(httpResponseBody).[0].ip>
-                        type: String
-                  timeout: 10s
-              - step:
                   type: ShellScript
                   name: Shell Script_1
                   identifier: ShellScript_1
@@ -36,7 +23,10 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo <+pipeline.variables.test>
+                        script: |-
+                          echo <+pipeline.variables.test>
+
+                          echo <+"arn:aws:iam::" + <+pipeline.variables.test> + ":role/datalake-" + <+pipeline.variables.test> + "-logstash-eso-role">
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
