@@ -147,7 +147,15 @@ pipeline:
       type: String
       description: ""
       value: manifest
-    - name: test
+    - name: con2
+      type: String
+      description: ""
+      value: <+input>
+    - name: con1
+      type: String
+      description: ""
+      value: <+input>
+    - name: con3
       type: String
       description: ""
       value: <+input>
