@@ -58,7 +58,7 @@ pipeline:
         tags: {}
         when:
           pipelineStatus: Success
-          condition: <+pipeline.variables.con1> == "col" AND <+pipeline.variables.con3> === “dev”
+          condition: <+pipeline.variables.con1> == "col" AND <+pipeline.variables.con3> == “dev”
     - stage:
         name: artifactstage
         identifier: artifactstage
