@@ -56,6 +56,9 @@ pipeline:
                   timeout: 10m
                   failureStrategies: []
         tags: {}
+        when:
+          pipelineStatus: Success
+          condition: <+pipeline.variables.con1> == "col" AND <+pipeline.variables.con3> === “dev”
     - stage:
         name: artifactstage
         identifier: artifactstage
