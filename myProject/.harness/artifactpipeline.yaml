@@ -23,10 +23,9 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: |-
+                        script: |+
                           echo <+pipeline.variables.test>
 
-                          echo <+"arn:aws:iam::" + <+pipeline.variables.test> + ":role/datalake-" + <+pipeline.variables.test> + "-logstash-eso-role">
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
