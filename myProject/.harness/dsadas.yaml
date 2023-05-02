@@ -23,8 +23,14 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo "abcd"
+                        script: |-
+                          echo "abcd"
+                          pwd
+                          sleep 600
                     environmentVariables: []
                     outputVariables: []
+                    delegateSelectors:
+                      - ajha-ng-delegate
                   timeout: 10m
+                  failureStrategies: []
         tags: {}
