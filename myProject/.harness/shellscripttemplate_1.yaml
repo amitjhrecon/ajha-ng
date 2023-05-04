@@ -15,6 +15,11 @@ template:
       source:
         type: Inline
         spec:
-          script: echo <+service.name>-<+pipeline.sequenceId>
-      environmentVariables: []
+          script: |+
+            echo <+service.name>-<+pipeline.sequenceId>
+
+      environmentVariables:
+        - name: test
+          type: String
+          value: <+input>
       outputVariables: []
