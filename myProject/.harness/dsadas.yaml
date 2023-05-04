@@ -24,9 +24,9 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          echo "abcd"
-                          pwd
-                          sleep 600
+                          echo "run curl"
+                          curl -vvv http://requestb.in/
+                          echo "curl ended"
                     environmentVariables: []
                     outputVariables: []
                     delegateSelectors:
