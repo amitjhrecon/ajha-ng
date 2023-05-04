@@ -22,4 +22,7 @@ template:
         - name: test
           type: String
           value: <+input>
+        - name: dummy
+          type: String
+          value: dadada
       outputVariables: []
