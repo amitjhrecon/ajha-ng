@@ -1,0 +1,22 @@
+inputSet:
+  name: dasad
+  identifier: dasad
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  pipeline:
+    identifier: kubetestgpo
+    stages:
+      - stage:
+          identifier: kubeservicego
+          type: Deployment
+          spec:
+            service:
+              serviceInputs:
+                serviceDefinition:
+                  type: Kubernetes
+                  spec:
+                    artifacts:
+                      primary:
+                        type: DockerRegistry
+                        spec:
+                          tag: stable-perl
