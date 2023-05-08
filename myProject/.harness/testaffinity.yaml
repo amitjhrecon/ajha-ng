@@ -1,0 +1,52 @@
+pipeline:
+  name: testaffinity
+  identifier: testaffinity
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  stages:
+    - stage:
+        name: shell
+        identifier: shell
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: select_delegate
+                  identifier: select_delegate
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: |
+                          echo $HOSTNAME
+                          HOST_SELECTOR=$HOSTNAME
+                    environmentVariables: []
+                    outputVariables:
+                      - name: HOST_SELECTOR
+                        type: String
+                        value: HOST_SELECTOR
+                  timeout: 10m
+              - step:
+                  type: ShellScript
+                  name: use delegate
+                  identifier: use_delegate
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo <+execution.steps.select_delegate.output.outputVariables.HOST_SELECTOR>
+                    environmentVariables: []
+                    outputVariables: []
+                    delegateSelectors:
+                      - <+execution.steps.select_delegate.output.outputVariables.HOST_SELECTOR>
+                  timeout: 10m
+                  failureStrategies: []
+        tags: {}
