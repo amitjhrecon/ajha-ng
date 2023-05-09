@@ -24,9 +24,9 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          echo "run curl"
-                          curl -vvv http://requestb.in/
-                          echo "curl ended"
+                          #echo "run curl"
+                          #curl -vvv http://requestb.in/
+                          #echo "curl ended"
                           echo $username
                     environmentVariables:
                       - name: username
