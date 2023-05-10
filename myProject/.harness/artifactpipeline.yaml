@@ -159,6 +159,8 @@ pipeline:
                     outputVariables: []
                   timeout: 10m
         tags: {}
+        when:
+          pipelineStatus: All
   variables:
     - name: convar
       type: String
