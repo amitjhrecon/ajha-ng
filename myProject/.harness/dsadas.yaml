@@ -48,6 +48,20 @@ pipeline:
             steps:
               - step:
                   type: ShellScript
+                  name: dummy
+                  identifier: dummy
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo "this is a test step"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+              - step:
+                  type: ShellScript
                   name: ShellScript_1
                   identifier: ShellScript_1
                   spec:
@@ -56,7 +70,10 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo "0 <+pipeline.stages.dsadsad.spec.execution.steps.ShellScript_1.status>"
+                        script: |-
+                          echo "0 <+pipeline.stages.dsadsad.spec.execution.steps.ShellScript_1.status>"
+
+                          echo "0 <+pipeline.stages.teststage2.spec.execution.steps.dummy.status>"
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
