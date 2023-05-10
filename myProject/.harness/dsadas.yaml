@@ -45,4 +45,23 @@ pipeline:
                       - ajha-ng-delegate
                   timeout: 10m
                   failureStrategies: []
+              - step:
+                  type: ShellScript
+                  name: ShellScript_2
+                  identifier: ShellScript_2
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo <+"pipeline."+"variables.testvar">
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
         tags: {}
+  variables:
+    - name: testvar
+      type: String
+      description: ""
+      value: thisvalue
