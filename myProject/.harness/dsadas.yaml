@@ -28,6 +28,14 @@ pipeline:
                           #curl -vvv http://requestb.in/
                           #echo "curl ended"
                           echo $username
+
+                          echo "testing log output"
+
+                          curl -o harness-delegate.tar.gz "https://app.harness.io/api/setup/delegates/download?accountId=jDOmhrFmSOGZJ1C91UC_hg&token=eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZSI6ImRlbGVnYXRlLmpET21ockZtU09HWkoxQzkxVUNfaGciLCJpc3MiOiJIYXJuZXNzIEluYyIsImV4cCI6MTY4MzcwMjU2OSwiaWF0IjoxNjgzNjk4OTY5fQ.D1-vimCo-pUEGKBGBwzmqHNdZo3RojHnvS6RgcvW04o&delegateName=qa&delegateProfileId=LF_VV5urRlWojpiBwYgU9Q&tokenName=default"
+
+                          echo "testing it again"
+
+                          echo "script output is jumbled"
                     environmentVariables:
                       - name: username
                         type: String
@@ -37,44 +45,4 @@ pipeline:
                       - ajha-ng-delegate
                   timeout: 10m
                   failureStrategies: []
-        tags: {}
-    - stage:
-        name: teststage2
-        identifier: teststage2
-        description: ""
-        type: Custom
-        spec:
-          execution:
-            steps:
-              - step:
-                  type: ShellScript
-                  name: dummy
-                  identifier: dummy
-                  spec:
-                    shell: Bash
-                    onDelegate: true
-                    source:
-                      type: Inline
-                      spec:
-                        script: echo "this is a test step"
-                    environmentVariables: []
-                    outputVariables: []
-                  timeout: 10m
-              - step:
-                  type: ShellScript
-                  name: ShellScript_1
-                  identifier: ShellScript_1
-                  spec:
-                    shell: Bash
-                    onDelegate: true
-                    source:
-                      type: Inline
-                      spec:
-                        script: |-
-                          echo "0 <+pipeline.stages.dsadsad.spec.execution.steps.ShellScript_1.status>"
-
-                          echo "0 <+pipeline.stages.teststage2.spec.execution.steps.dummy.status>"
-                    environmentVariables: []
-                    outputVariables: []
-                  timeout: 10m
         tags: {}
