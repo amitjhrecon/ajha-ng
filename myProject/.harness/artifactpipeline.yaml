@@ -114,6 +114,12 @@ pipeline:
                   spec:
                     skipDryRun: false
                     pruningEnabled: false
+                  failureStrategies:
+                    - onFailure:
+                        errors:
+                          - AllErrors
+                        action:
+                          type: MarkAsFailure
               - step:
                   type: ShellScript
                   name: ShellScript_2
