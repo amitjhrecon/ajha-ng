@@ -57,7 +57,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo <+<+"pipeline."+"variables.testvar">>
+                        script: echo var2
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
@@ -67,4 +67,8 @@ pipeline:
       type: String
       description: ""
       value: thisvalue
+    - name: var2
+      type: String
+      description: ""
+      value: <+<+"pipeline."+"variables.testvar">>
   allowStageExecutions: true
