@@ -114,6 +114,20 @@ pipeline:
                   spec:
                     skipDryRun: false
                     pruningEnabled: false
+              - step:
+                  type: ShellScript
+                  name: ShellScript_2
+                  identifier: ShellScript_2
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo "0 <+pipeline.stages.artifactstage.spec.execution.steps.rolloutDeployment.status>"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
             rollbackSteps:
               - step:
                   name: Rollback Rollout Deployment
