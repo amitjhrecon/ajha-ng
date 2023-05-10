@@ -36,6 +36,8 @@ pipeline:
                           echo "testing it again"
 
                           echo "script output is jumbled"
+
+                          rm harness-delegate.tar.gz
                     environmentVariables:
                       - name: username
                         type: String
