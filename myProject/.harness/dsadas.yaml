@@ -77,5 +77,5 @@ pipeline:
     - name: var3
       type: String
       description: ""
-      value: var2
+      value: <+input>
   allowStageExecutions: true
