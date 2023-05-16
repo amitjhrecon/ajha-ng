@@ -73,7 +73,7 @@ pipeline:
     - name: var2
       type: String
       description: ""
-      value: <+<+"pipeline."+"variables.testvar">>
+      value: dadasd
     - name: var3
       type: String
       description: ""
