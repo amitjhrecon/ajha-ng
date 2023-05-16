@@ -91,6 +91,22 @@ pipeline:
             steps:
               - step:
                   type: ShellScript
+                  name: ShellScript_3
+                  identifier: ShellScript_3
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          echo <+"Deploying service"+<+service.name>+ "artifact"+<+artifacts.primary.artifactPath>>
+                                    
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+              - step:
+                  type: ShellScript
                   name: Shell Script_1
                   identifier: ShellScript_1
                   spec:
