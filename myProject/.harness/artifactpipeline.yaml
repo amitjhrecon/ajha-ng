@@ -100,7 +100,7 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          echo <+"Deploying service"+<+service.name>+ "artifact"+<+artifacts.primary.artifactPath>>
+                          echo <+"Deploying service"+<+service.name>>
                                     
                     environmentVariables: []
                     outputVariables: []
