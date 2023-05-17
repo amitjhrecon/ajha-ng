@@ -209,22 +209,10 @@ pipeline:
       type: String
       description: ""
       value: dummy2
-    - name: dummy2
+    - name: test
       type: String
       description: ""
-      value: manifest
-    - name: con2
-      type: String
-      description: ""
-      value: <+input>
-    - name: con1
-      type: String
-      description: ""
-      value: <+input>
-    - name: con3
-      type: String
-      description: ""
-      value: <+input>
+      value: /sdm
   delegateSelectors:
     - groupdelegate
   allowStageExecutions: true
