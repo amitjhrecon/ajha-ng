@@ -71,6 +71,15 @@ pipeline:
               serviceDefinition:
                 type: Kubernetes
                 spec:
+                  manifests:
+                    - manifest:
+                        identifier: filemanifest
+                        type: Values
+                        spec:
+                          store:
+                            type: Harness
+                            spec:
+                              files: <+input>
                   artifacts:
                     primary:
                       primaryArtifactRef: <+input>
