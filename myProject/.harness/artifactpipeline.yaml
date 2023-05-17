@@ -112,7 +112,7 @@ pipeline:
                           echo <+"Deploying service "+<+service.name>+" artifact "+<+artifacts.primary.imagePath>>
 
 
-                          echo "<+<+pipeline.variables.boolvalue>=='True'?<+"value1"+<+pipeline.variables.path1>>:<+"value2">>"
+                          echo "<+<+pipeline.variables.boolvalue>=='True'?<+"value1"+<+pipeline.variables.path1>>:<+"value2"+<+pipeline.variables.path2>>>"
 
 
                           echo "<+<+pipeline.variables.myStatus> == 'Success' ? 'Awesome!' : 'Suck :('>"
