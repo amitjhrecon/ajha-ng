@@ -112,7 +112,7 @@ pipeline:
                           echo <+"Deploying service "+<+service.name>+" artifact "+<+artifacts.primary.imagePath>>
 
 
-                          echo <+<+pipeline.variables.boolvalue.equals("True")>?<+"chosethispath"+<pipeline.variables.path1>>:<+"choosethispath2"+<+pipeline.variables.path2>>>
+                          echo <+<+<+pipeline.variables.boolvalue>=="True">?<+"chosethispath"+<pipeline.variables.path1>>:<+"choosethispath2"+<+pipeline.variables.path2>>>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
