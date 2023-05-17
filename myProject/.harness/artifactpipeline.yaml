@@ -212,7 +212,7 @@ pipeline:
     - name: test
       type: String
       description: ""
-      value: /sdm
+      value: <+input>
   delegateSelectors:
     - groupdelegate
   allowStageExecutions: true
