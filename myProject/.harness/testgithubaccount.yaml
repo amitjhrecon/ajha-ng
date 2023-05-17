@@ -1,0 +1,23 @@
+connector:
+  name: testgithubaccount
+  identifier: testgithubaccount
+  description: ""
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  type: Github
+  spec:
+    url: https://github.com/amitjhrecon/
+    validationRepo: amit-repo
+    authentication:
+      type: Http
+      spec:
+        type: UsernameToken
+        spec:
+          username: amitjha.sit@gmail.com
+          tokenRef: ajhanggitlocal
+    apiAccess:
+      type: Token
+      spec:
+        tokenRef: ajhanggitlocal
+    executeOnDelegate: true
+    type: Account
