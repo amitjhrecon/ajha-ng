@@ -110,7 +110,9 @@ pipeline:
                       spec:
                         script: |-
                           echo <+"Deploying service "+<+service.name>+" artifact "+<+artifacts.primary.imagePath>>
-                                    
+
+
+                          echo <+<+pipeline.variables.boolvalue>.equals("True")?<+"chosethispath"+<pipeline.variables.path1>>:<+"choosethispath2"+<+pipeline.variables.path2>>>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
@@ -219,6 +221,18 @@ pipeline:
       description: ""
       value: dummy2
     - name: test
+      type: String
+      description: ""
+      value: <+input>
+    - name: path1
+      type: String
+      description: ""
+      value: thisIsPath1
+    - name: path2
+      type: String
+      description: ""
+      value: thisIsPath2
+    - name: boolvalue
       type: String
       description: ""
       value: <+input>
