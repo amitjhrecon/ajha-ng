@@ -15,6 +15,20 @@ pipeline:
             steps:
               - step:
                   type: ShellScript
+                  name: ShellScript_3
+                  identifier: ShellScript_3
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo <+<+pipeline.variables.boolvalue>=="True"?"/testfile":"/qafile">
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+              - step:
+                  type: ShellScript
                   name: ShellScript_1
                   identifier: ShellScript_1
                   spec:
@@ -78,4 +92,8 @@ pipeline:
       type: String
       description: ""
       value: <+input>
+    - name: boolvalue
+      type: String
+      description: ""
+      value: "True"
   allowStageExecutions: true
