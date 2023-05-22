@@ -75,18 +75,6 @@ pipeline:
                     primary:
                       primaryArtifactRef: <+input>
                       sources: <+input>
-          environment:
-            environmentRef: dev
-            environmentInputs:
-              identifier: dev
-              type: PreProduction
-              variables:
-                - name: connectorenv
-                  type: String
-                  value: <+input>
-            deployToAll: false
-            infrastructureDefinitions:
-              - identifier: qa
           execution:
             steps:
               - step:
@@ -166,6 +154,12 @@ pipeline:
                   timeout: 10m
                   spec:
                     pruningEnabled: false
+          environmentGroup:
+            envGroupRef: myenvgroup
+            metadata:
+              parallel: true
+            deployToAll: true
+            environments: <+input>
         tags: {}
         failureStrategies:
           - onFailure:
