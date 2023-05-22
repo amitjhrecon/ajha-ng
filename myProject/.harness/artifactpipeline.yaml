@@ -213,7 +213,7 @@ pipeline:
     - name: dummy1
       type: String
       description: ""
-      value: dummy2
+      value: env
     - name: test
       type: String
       description: ""
