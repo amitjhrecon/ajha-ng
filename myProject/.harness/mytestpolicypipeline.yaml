@@ -1,0 +1,35 @@
+pipeline:
+  name: mytestpolicypipeline
+  identifier: mytestpolicypipeline
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  stages:
+    - stage:
+        name: teststage1
+        identifier: teststage1
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: TerraformPlan
+                  name: TerraformPlan_1
+                  identifier: TerraformPlan_1
+                  spec:
+                    provisionerIdentifier: jkjl
+                    configuration:
+                      command: Apply
+                      configFiles:
+                        store:
+                          spec:
+                            connectorRef: testgithubaccount
+                            repoName: mklm
+                            gitFetchType: Branch
+                            branch: mkmk
+                            folderPath: mcvcb
+                          type: Github
+                      secretManagerRef: harnessSecretManager
+                  timeout: 10m
+        tags: {}
