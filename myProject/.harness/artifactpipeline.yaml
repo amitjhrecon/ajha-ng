@@ -158,8 +158,14 @@ pipeline:
             envGroupRef: myenvgroup
             metadata:
               parallel: true
-            deployToAll: true
-            environments: <+input>
+            filters:
+              - identifier: testfilter
+                type: tags
+                entities:
+                  - environments
+                spec:
+                  tags: <+pipeline.variables.dummy1>
+                  matchType: all
         tags: {}
         failureStrategies:
           - onFailure:
