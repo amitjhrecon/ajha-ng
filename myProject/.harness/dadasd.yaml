@@ -30,10 +30,10 @@ pipeline:
                     environmentVariables:
                       - name: var1
                         type: String
-                        value: "\"this value\""
+                        value: <+pipeline.variables.test1>
                       - name: var2
                         type: String
-                        value: "\"is being displayed\""
+                        value: <+pipeline.variables.test2>
                     outputVariables: []
                     executionTarget:
                       connectorRef: account.ajhareprossh
@@ -41,3 +41,12 @@ pipeline:
         tags: {}
   delegateSelectors:
     - docker-delegate
+  variables:
+    - name: test1
+      type: String
+      description: ""
+      value: this is
+    - name: test2
+      type: String
+      description: ""
+      value: being displayed
