@@ -20,7 +20,7 @@ pipeline:
                   timeout: 10m
                   spec:
                     shell: Bash
-                    onDelegate: true
+                    onDelegate: false
                     source:
                       type: Inline
                       spec:
@@ -34,6 +34,9 @@ pipeline:
                           echo <+secrets.getValue("account.csesshreproref")>
                     environmentVariables: []
                     outputVariables: []
+                    executionTarget:
+                      connectorRef: account.ajhareprossh
+                      host: ec2-3-83-15-117.compute-1.amazonaws.com
         tags: {}
   delegateSelectors:
     - docker-delegate
