@@ -25,14 +25,15 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          echo <+secrets.getValue("account.hashicorpvault://usheervaultest/newusheer/harness_vault_validation#value")> > /tmp/testsecretvalue.txt
-
-
-                          echo <+secrets.getValue("account.hashicorpvault://usheervaultest/csetestssh#value")> > /tmp/testsecretvaluen.txt
-
-
-                          echo <+secrets.getValue("account.csesshreproref")>
-                    environmentVariables: []
+                          echo $var1
+                          echo $var2
+                    environmentVariables:
+                      - name: var1
+                        type: String
+                        value: "\"this value\""
+                      - name: var2
+                        type: String
+                        value: "\"is being displayed\""
                     outputVariables: []
                     executionTarget:
                       connectorRef: account.ajhareprossh
