@@ -24,10 +24,8 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: |-
-                          echo <+secrets.getValue("account.hashicorpvault://usheervaultest/newusheer/harness_vault_validation#value")> >> temp.txt
-
-                          echo <+secrets.getValue("account.csesshreproref")>
+                        script: |
+                          echo <+secrets.getValue("account.hashicorpvault://usheervaultest/harness/csessh#csesshref")> >> temp.txt
                     environmentVariables: []
                     outputVariables: []
         tags: {}
