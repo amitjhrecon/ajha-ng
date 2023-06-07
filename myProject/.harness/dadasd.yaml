@@ -31,7 +31,7 @@ pipeline:
                           echo <+secrets.getValue("account.hashicorpvault://usheervaultest/csetestssh#value")> > /tmp/testsecretvaluen.txt
 
 
-                          echo <+secrets.getValue("csesshreproref")>
+                          echo <+secrets.getValue("account.csesshreproref")>
                     environmentVariables: []
                     outputVariables: []
         tags: {}
