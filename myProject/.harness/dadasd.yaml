@@ -28,7 +28,7 @@ pipeline:
                           echo <+secrets.getValue("account.hashicorpvault://usheervaultest/newusheer/harness_vault_validation#value")> > /tmp/testsecretvalue.txt
 
 
-                          echo <+secrets.getValue("account.hashicorpvault://usheervaultest/newusheer/csetestssh#value")> > /tmp/testsecretvalue1.txt
+                          echo <+secrets.getValue("account.hashicorpvault://usheervaultest/csetestssh#value")> > /tmp/testsecretvalue1.txt
                     environmentVariables: []
                     outputVariables: []
         tags: {}
