@@ -31,3 +31,5 @@ pipeline:
                     environmentVariables: []
                     outputVariables: []
         tags: {}
+  delegateSelectors:
+    - docker-delegate
