@@ -50,3 +50,7 @@ pipeline:
       type: String
       description: ""
       value: being displayed
+    - name: dadasda
+      type: String
+      description: ""
+      value: dadsad
