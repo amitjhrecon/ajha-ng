@@ -8,7 +8,7 @@ pipeline:
     - stage:
         name: dsdadsad
         identifier: dsdadsad
-        description: ""
+        description: dasdasddaasddsad
         type: Custom
         spec:
           execution:
