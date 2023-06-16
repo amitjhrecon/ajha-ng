@@ -108,7 +108,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: "str=`echo $myvar3 | sed 's/{//g' | sed 's/}//g'`\ndelimiter=\", \"\ns=$str$delimiter\narray=();\n\nwhile [[ $s ]]; do\n\tarray+=( \"${s%%\"$delimiter\"*}\" );\n\ts=${s#*\"$delimiter\"};\ndone;\ndeclare -p array\n\nfor i in \"${array[@]}\"\ndo\n   echo $i\ndone\n\n"
+                        script: "echo $myvar3\nstr=`echo $myvar3 | sed 's/{//g' | sed 's/}//g'`\ndelimiter=\", \"\ns=$str$delimiter\narray=();\n\nwhile [[ $s ]]; do\n\tarray+=( \"${s%%\"$delimiter\"*}\" );\n\ts=${s#*\"$delimiter\"};\ndone;\ndeclare -p array\n\nfor i in \"${array[@]}\"\ndo\n   echo $i\ndone\n\n"
                     environmentVariables:
                       - name: myvar3
                         type: String
