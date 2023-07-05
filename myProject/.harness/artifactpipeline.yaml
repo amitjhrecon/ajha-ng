@@ -77,6 +77,7 @@ pipeline:
                       sources: <+input>
                     sidecars:
                       - sidecar:
+                          identifier: testside
                           spec:
                             imagePath: <+input>
                             tag: <+input>
