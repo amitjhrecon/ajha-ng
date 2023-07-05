@@ -78,6 +78,7 @@ pipeline:
                     sidecars:
                       - sidecar:
                           identifier: testside
+                          type: DockerRegistry
                           spec:
                             imagePath: <+input>
                             tag: <+input>
