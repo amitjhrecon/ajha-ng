@@ -75,6 +75,11 @@ pipeline:
                     primary:
                       primaryArtifactRef: <+input>
                       sources: <+input>
+                    sidecars:
+                      - sidecar:
+                          spec:
+                            imagePath: <+input>
+                            tag: <+input>
           execution:
             steps:
               - step:
