@@ -52,3 +52,26 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+    - stage:
+        name: dasdas
+        identifier: dasdas
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: dasdad
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
