@@ -30,3 +30,5 @@ template:
             - AllErrors
           action:
             type: Ignore
+    when:
+      stageStatus: All
