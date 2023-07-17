@@ -12,7 +12,7 @@ template:
       mode: orchestration
       config: default
       target:
-        name: dadu
+        name: daduaa
         type: repository
         variant: dad
       advanced:
