@@ -24,3 +24,9 @@ template:
         ssl: true
       tool:
         project_key: <+input>
+    failureStrategies:
+      - onFailure:
+          errors:
+            - AllErrors
+          action:
+            type: Ignore
