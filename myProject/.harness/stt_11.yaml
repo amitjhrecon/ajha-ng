@@ -22,3 +22,5 @@ template:
         access_token: dad
         domain: dad
         ssl: true
+      tool:
+        project_key: <+input>
