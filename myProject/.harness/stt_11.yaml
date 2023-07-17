@@ -1,0 +1,24 @@
+template:
+  name: stt
+  identifier: stt
+  versionLabel: "1.1"
+  type: Step
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  spec:
+    type: Sonarqube
+    spec:
+      mode: orchestration
+      config: default
+      target:
+        name: dad
+        type: repository
+        variant: dad
+      advanced:
+        log:
+          level: info
+      auth:
+        access_token: dad
+        domain: dad
+        ssl: true
