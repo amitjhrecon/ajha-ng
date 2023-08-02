@@ -41,6 +41,9 @@ template:
         - name: instancename
           jsonPath: functionName
           description: ""
+        - name: myvalue
+          jsonPath: somedummy
+          description: ""
       instancesListPath: data
     execution:
       stepTemplateRefs:
