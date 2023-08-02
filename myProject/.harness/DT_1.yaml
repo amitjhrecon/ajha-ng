@@ -32,7 +32,7 @@ template:
                 "data": [
                   {
                     "functionName": "test-input",
-                    "somedummy" : <+stage.spec.infrastructure.output.variable.myvar1>
+                    "somedummy" : <+pipeline.variables.somevar>
                   }
                 ]
               } 
