@@ -38,3 +38,9 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+  variables:
+    - name: somevar
+      type: String
+      description: ""
+      required: false
+      value: kuchbhi
