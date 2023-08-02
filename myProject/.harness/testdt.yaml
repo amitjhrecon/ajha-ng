@@ -1,0 +1,40 @@
+pipeline:
+  name: testdt
+  identifier: testdt
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  stages:
+    - stage:
+        name: dtstage
+        identifier: dtstage
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: CustomDeployment
+          customDeploymentRef:
+            templateRef: DT
+            versionLabel: "1"
+          execution:
+            steps:
+              - step:
+                  name: Fetch Instances
+                  identifier: fetchInstances
+                  type: FetchInstanceScript
+                  timeout: 10m
+                  spec: {}
+            rollbackSteps: []
+          service:
+            serviceRef: DTtestservice
+          environment:
+            environmentRef: gcpinfra
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: dttestinfra
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
