@@ -11,7 +11,7 @@ template:
       variables:
         - name: myvar1
           type: String
-          value: <+input>
+          value: abhi
           description: ""
           required: false
       fetchInstancesScript:
