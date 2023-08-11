@@ -130,6 +130,8 @@ pipeline:
                   spec:
                     skipDryRun: false
                     pruningEnabled: false
+                    delegateSelectors:
+                      - groupdelegate
                   failureStrategies:
                     - onFailure:
                         errors:
