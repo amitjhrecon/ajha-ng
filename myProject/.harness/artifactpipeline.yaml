@@ -75,13 +75,6 @@ pipeline:
                     primary:
                       primaryArtifactRef: <+input>
                       sources: <+input>
-                    sidecars:
-                      - sidecar:
-                          identifier: testside
-                          type: DockerRegistry
-                          spec:
-                            imagePath: <+input>
-                            tag: <+input>
           execution:
             steps:
               - step:
