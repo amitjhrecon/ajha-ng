@@ -1,0 +1,31 @@
+template:
+  name: Black Duck
+  identifier: Black_Duck
+  versionLabel: "1.1"
+  type: Step
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  spec:
+    type: BlackDuck
+    spec:
+      mode: orchestration
+      config: default
+      target:
+        name: somename
+        type: repository
+        variant: somevariant
+        workspace: /harness
+      advanced:
+        log:
+          level: info
+      auth:
+        access_token: <+input>
+        domain: http://someur.com
+        ssl: true
+        type: apiKey
+        version: 5.0.2
+      tool:
+        project_name: <+input>
+        project_version: <+input>
+    description: testblackduc
