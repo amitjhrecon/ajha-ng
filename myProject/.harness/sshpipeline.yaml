@@ -1,0 +1,45 @@
+pipeline:
+  name: sshpipeline
+  identifier: sshpipeline
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  stages:
+    - stage:
+        name: sshstage
+        identifier: sshstage
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: Ssh
+          service:
+            serviceRef: sshservice
+          environment:
+            environmentRef: sshenv
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: sshinfra
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo "assa"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+            rollbackSteps: []
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: Ignore
