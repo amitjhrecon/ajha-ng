@@ -24,10 +24,13 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          echo <+secrets.getValue("account.bitbucket_tokenusheer")> >> abc.txt
+                          abcd=<+secrets.getValue("account.bitbucket_tokenusheer")>
 
                           cat abc.txt
                     environmentVariables: []
-                    outputVariables: []
+                    outputVariables:
+                      - name: abcd
+                        type: String
+                        value: abcd
                   timeout: 10m
         tags: {}
