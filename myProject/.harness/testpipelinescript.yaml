@@ -1,0 +1,33 @@
+pipeline:
+  name: testpipelinescript
+  identifier: testpipelinescript
+  projectIdentifier: ajhacseng
+  orgIdentifier: CSE
+  tags: {}
+  stages:
+    - stage:
+        name: adsd
+        identifier: adsd
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          echo <+secrets.getValue("account.bitbucket_tokenusheer")> >> abc.txt
+
+                          cat abc.txt
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
