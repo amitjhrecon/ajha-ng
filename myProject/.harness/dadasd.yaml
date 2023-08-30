@@ -40,6 +40,8 @@ pipeline:
                       connectorRef: account.ajhareprossh
                       host: ec2-3-83-15-117.compute-1.amazonaws.com
         tags: {}
+        delegateSelectors:
+          - ajha-ng-delegate
   delegateSelectors:
     - docker-delegate
   variables:
