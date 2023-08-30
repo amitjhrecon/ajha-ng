@@ -6,8 +6,8 @@ pipeline:
   tags: {}
   stages:
     - stage:
-        name: sshstage
-        identifier: sshstage
+        name: qeweqe
+        identifier: qeweqe
         description: ""
         type: Deployment
         spec:
@@ -22,40 +22,48 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: ShellScript
-                  name: ShellScript_1
-                  identifier: ShellScript_1
-                  spec:
-                    shell: Bash
-                    onDelegate: true
-                    source:
-                      type: Inline
+                  name: Deploy
+                  identifier: Deploy
+                  timeout: 10m
+                  strategy:
+                    repeat:
+                      items: <+stage.output.hosts>
+                  template:
+                    templateRef: account.Default_Install_Jar_Bash
+                    templateInputs:
+                      type: Command
                       spec:
-                        script: echo "assa"
-                    environmentVariables: []
-                    outputVariables: []
-                  timeout: 10m
+                        environmentVariables:
+                          - name: DestinationDirectory
+                            type: String
+                            value: $HOME/<+service.name>/<+env.name>
+                          - name: WorkingDirectory
+                            type: String
+                            value: $HOME/<+service.name>/<+env.name>/tomcat/bin
+            rollbackSteps:
               - step:
-                  type: Command
-                  name: Command_1
-                  identifier: Command_1
-                  spec:
-                    onDelegate: false
-                    environmentVariables: []
-                    outputVariables: []
-                    commandUnits:
-                      - identifier: configCopy
-                        name: configCopy
-                        type: Copy
-                        spec:
-                          sourceType: Config
-                          destinationPath: /tmp/
+                  name: Rollback
+                  identifier: Rollback
                   timeout: 10m
-            rollbackSteps: []
+                  strategy:
+                    repeat:
+                      items: <+stage.output.hosts>
+                  template:
+                    templateRef: account.Default_Install_Jar_Bash
+                    templateInputs:
+                      type: Command
+                      spec:
+                        environmentVariables:
+                          - name: DestinationDirectory
+                            type: String
+                            value: $HOME/<+service.name>/<+env.name>
+                          - name: WorkingDirectory
+                            type: String
+                            value: $HOME/<+service.name>/<+env.name>/tomcat/bin
         tags: {}
         failureStrategies:
           - onFailure:
               errors:
                 - AllErrors
               action:
-                type: Ignore
+                type: StageRollback
