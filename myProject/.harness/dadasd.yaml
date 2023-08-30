@@ -25,7 +25,7 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          echo <+secret.getvalue("account.bitbucket_tokenusheer")> >> abc.txt
+                          echo <+secrets.getValue("account.bitbucket_tokenusheer")> >> abc.txt
 
                           cat abc.txt
                     environmentVariables:
