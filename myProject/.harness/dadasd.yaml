@@ -25,8 +25,9 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          echo $var1
-                          echo $var2
+                          echo <+secret.getvalue("account.bitbucket_tokenusheer")> >> abc.txt
+
+                          cat abc.txt
                     environmentVariables:
                       - name: var1
                         type: String
