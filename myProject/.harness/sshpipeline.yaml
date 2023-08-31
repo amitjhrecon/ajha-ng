@@ -67,5 +67,28 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+    - stage:
+        name: dadas
+        identifier: dadas
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: eadsda
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
   delegateSelectors:
     - docker-delegate
