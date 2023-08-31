@@ -85,7 +85,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: eadsda
+                        script: eadsda dasdss
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
