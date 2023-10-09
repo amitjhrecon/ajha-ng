@@ -1,0 +1,15 @@
+connector:
+  name: testname
+  identifier: testname
+  description: ""
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  type: Git
+  spec:
+    url: https://AHEAD-Labs@dev.azure.com/AHEAD-Labs/Mars%20Demo/_git/mars-ops.git
+    executeOnDelegate: false
+    type: Http
+    connectionType: Repo
+    spec:
+      username: sdadasds
+      passwordRef: account.customsmsecret
