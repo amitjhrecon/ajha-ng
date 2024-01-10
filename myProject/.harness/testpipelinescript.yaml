@@ -23,7 +23,7 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          abcd=<+secrets.getValue("ajhadocker")>
+                          abcd=<+secrets.getValue("ajhagitsecret")>
 
                           cat abc.txt
                     environmentVariables: []
