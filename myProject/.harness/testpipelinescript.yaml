@@ -19,12 +19,11 @@ pipeline:
                   identifier: ShellScript_1
                   spec:
                     shell: Bash
-                    onDelegate: true
                     source:
                       type: Inline
                       spec:
                         script: |-
-                          abcd=<+secrets.getValue("account.bitbucket_tokenusheer")>
+                          abcd=<+secrets.getValue("ajhadocker")>
 
                           cat abc.txt
                     environmentVariables: []
@@ -32,5 +31,6 @@ pipeline:
                       - name: abcd
                         type: String
                         value: abcd
+                    executionTarget: {}
                   timeout: 10m
         tags: {}
