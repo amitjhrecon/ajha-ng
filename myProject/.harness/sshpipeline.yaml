@@ -56,7 +56,7 @@ pipeline:
                         environmentVariables:
                           - name: DestinationDirectory
                             type: String
-                            value: $HOME/<+service.name>/<+env.name>
+                            value: $HOME/<+service.name>/<+env.name>/somepath
                           - name: WorkingDirectory
                             type: String
                             value: $HOME/<+service.name>/<+env.name>/tomcat/bin
