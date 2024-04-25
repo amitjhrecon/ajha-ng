@@ -1,0 +1,11 @@
+inputSet:
+  name: blah
+  identifier: blah
+  orgIdentifier: default
+  projectIdentifier: cseajhang
+  pipeline:
+    identifier: testpipelinereproankit
+    variables:
+      - name: testvar
+        type: String
+        value: testvalue
