@@ -9,4 +9,4 @@ inputSet:
     variables:
       - name: testvar
         type: String
-        value: testvalue
+        value: testvaluesomethingrandom
