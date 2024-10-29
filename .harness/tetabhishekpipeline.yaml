@@ -23,7 +23,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo "this is testbranch1"
+                        script: echo "this is testbranch2"
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
