@@ -1,1 +1,1 @@
-myconfig: <+pipeline.variables.somevarnew>
+myconfig: <+secrets.getValue('testsecret')>
