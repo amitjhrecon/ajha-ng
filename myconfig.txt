@@ -1,0 +1,1 @@
+myconfig: <+secret.getValue("testsecret")>
