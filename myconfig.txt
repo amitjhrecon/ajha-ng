@@ -1,1 +1,1 @@
-myconfig: <+pipeline.variables.somevar>
+myconfig: <+pipeline.variables.somevarnew>
