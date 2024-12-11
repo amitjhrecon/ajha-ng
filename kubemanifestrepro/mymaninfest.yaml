@@ -1,0 +1,490 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{.Values.name}}-postgresql-extended-configuration
+  labels:
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/instance: {{.Values.name}}
+data:
+  override.conf: |
+    listen_addresses = '*'
+    max_connections = '1500'
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{.Values.name}}-postgresql
+  labels:
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/instance: {{.Values.name}}
+type: Opaque
+stringData:
+  postgresql-postgres-password: {{.Values.env.secrets.POSTGRESQL_ADMIN_PASSWORD | b64dec }} # not in use
+  postgresql-password: {{.Values.env.secrets.POSTGRESQL_PASSWORD | b64dec }}
+  replication-password: {{.Values.env.secrets.POSTGRESQL_ADMIN_PASSWORD | b64dec }}
+  postgresql-user: {{.Values.env.secrets.POSTGRESQL_USER }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.name}}-postgresql-headless
+  labels:
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/instance: {{.Values.name}}
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  publishNotReadyAddresses: true
+  ports:
+    - name: tcp-postgresql
+      port: 5432
+      targetPort: tcp-postgresql
+  selector:
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/instance: {{.Values.name}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.name}}-postgresql
+  labels:
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/instance: {{.Values.name}}
+  annotations:
+spec:
+  type: ClusterIP
+  ports:
+    - name: tcp-postgresql
+      port: 5432
+      targetPort: tcp-postgresql
+  selector:
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/instance: {{.Values.name}}
+    role: primary
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.name}}-postgresql-headless-rpl
+  labels:
+    app.kubernetes.io/name: postgresql-rpl
+    app.kubernetes.io/instance: {{.Values.name}}
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  publishNotReadyAddresses: true
+  ports:
+    - name: tcp-postgresql
+      port: 5432
+      targetPort: tcp-postgresql
+  selector:
+    app.kubernetes.io/name: postgresql-rpl
+    app.kubernetes.io/instance: {{.Values.name}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.name}}-postgresql-rpl
+  labels:
+    app.kubernetes.io/name: postgresql-rpl
+    app.kubernetes.io/instance: {{.Values.name}}
+  annotations:
+spec:
+  type: ClusterIP
+  ports:
+    - name: tcp-postgresql
+      port: 5432
+      targetPort: tcp-postgresql
+  selector:
+    app.kubernetes.io/name: postgresql-rpl
+    app.kubernetes.io/instance: {{.Values.name}}
+    role: replica
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{.Values.name}}-psql-init
+  labels:
+    app.kubernetes.io/instance: postgresql
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/version: 16.2.0
+data:
+  init-identity-conf.sql: |-
+    CREATE USER identity WITH ENCRYPTED PASSWORD '{{.Values.secrets.databases.identityPassword}}';
+    CREATE DATABASE identity;
+    ALTER DATABASE identity OWNER TO identity;
+    CREATE USER "frontend-configuration" WITH ENCRYPTED PASSWORD '{{.Values.secrets.databases.frontendConfigurationPassword}}';
+    CREATE DATABASE "frontend-configuration";
+    ALTER DATABASE "frontend-configuration" OWNER TO "frontend-configuration";
+    CREATE USER resource_registry WITH ENCRYPTED PASSWORD '{{.Values.secrets.databases.resourceRegistryPassword}}';
+    CREATE DATABASE resource_registry;
+    ALTER DATABASE resource_registry  OWNER TO resource_registry;
+    CREATE USER kong WITH ENCRYPTED PASSWORD '{{.Values.secrets.databases.kongPassword}}';
+    CREATE DATABASE kong;
+    ALTER DATABASE kong OWNER TO kong;
+    CREATE USER ghostwriter WITH ENCRYPTED PASSWORD '{{.Values.secrets.databases.ghostwriterPassword}}';
+    CREATE DATABASE ghostwriter;
+    ALTER DATABASE ghostwriter OWNER TO ghostwriter;
+    CREATE USER insights WITH ENCRYPTED PASSWORD '{{.Values.secrets.databases.insightsPassword}}';
+    CREATE DATABASE insights;
+    ALTER DATABASE insights OWNER TO insights;
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{.Values.name}}-postgresql
+  labels:
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/instance: {{.Values.name}}
+    app.kubernetes.io/component: primary
+  annotations:
+spec:
+  serviceName: {{.Values.name}}-postgresql-headless
+  replicas: {{.Values.postgresPrimaryReplicas}}
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgresql
+      app.kubernetes.io/instance: {{.Values.name}}
+      role: primary
+  template:
+    metadata:
+      name: {{.Values.name}}-postgresql
+      labels:
+        app.kubernetes.io/name: postgresql
+        app.kubernetes.io/instance: {{.Values.name}}
+        role: primary
+        app.kubernetes.io/component: primary
+    spec:      
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: postgresql
+                    app.kubernetes.io/instance: {{.Values.name}}
+                    app.kubernetes.io/component: primary
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+      serviceAccountName: utilihive-ghostwriter-stack-filebeat
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 0
+        fsGroup: 1001
+      imagePullSecrets:
+      - name: jfrog-0013util
+      containers:
+        - name: {{.Values.name}}-postgresql
+          image: {{.Values.postgresImage}}
+          imagePullPolicy: "IfNotPresent"
+          resources:
+            limits:
+              cpu: 1500m
+              memory: 2Gi
+            requests:
+              cpu: 1500m
+              memory: 2Gi
+          securityContext:
+            capabilities:
+              add:
+                - SYS_ADMIN
+          env:
+            - name: POSTGRESQL_PORT_NUMBER
+              value: "5432"
+            - name: POSTGRES_REPLICATION_MODE
+              value: "master"
+            - name: POSTGRES_REPLICATION_USER
+              value: "postgres"
+            - name: POSTGRES_REPLICATION_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.name}}-postgresql
+                  key: postgresql-password
+            - name: POSTGRES_CLUSTER_APP_NAME
+              value: my_application
+            # - name: MODE
+            #   value: "postgres"
+            # - name: POSTGRESQL_MODE
+            #   value: "primary"
+            - name: POSTGRESQL_ENABLE_LDAP
+              value: "no"
+            # TLS
+            - name: POSTGRESQL_ENABLE_TLS
+              value: "no"
+            # Audit
+            - name: POSTGRESQL_LOG_HOSTNAME
+              value: "false"
+            - name: POSTGRES_DATABASE
+              value: "postgres"
+            - name: POSTGRESQL_LOG_CONNECTIONS
+              value: "false"
+            - name: POSTGRESQL_LOG_DISCONNECTIONS
+              value: "false"
+            - name: POSTGRESQL_PGAUDIT_LOG_CATALOG
+              value: "off"
+            # Others
+            - name: POSTGRESQL_CLIENT_MIN_MESSAGES
+              value: "error"
+            - name: POSTGRESQL_SHARED_PRELOAD_LIBRARIES
+              value: "pgaudit"
+            - name: POSTGRES_INITSCRIPTS_USERNAME
+              value: postgres
+            - name: POSTGRES_INITSCRIPTS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.name}}-postgresql
+                  key: postgresql-password
+            - name: POSTGRESQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.name}}-postgresql
+                  key: postgresql-password
+            - name: POSTGRESQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.name}}-postgresql
+                  key: postgresql-user
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.name}}-postgresql
+                  key: postgresql-password
+            - name: POSTGRESQL_DATABASE
+              value: "postgres"
+            - name: POSTGRESQL_VOLUME_DIR
+              value: "/bitnami/postgresql"
+            - name: PGDATA
+              value: "/bitnami/postgresql/data"
+          ports:
+            - name: tcp-postgresql
+              containerPort: 5432
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - exec pg_isready -U "${POSTGRESQL_USER}" -d "dbname=postgres" -h 127.0.0.1 -p 5432
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - -e
+                - |
+                  exec pg_isready -U "${POSTGRESQL_USER}" -d "dbname=postgres" -h 127.0.0.1 -p 5432
+                  [ -f /opt/bitnami/postgresql/tmp/.initialized ] || [ -f /bitnami/postgresql/.initialized ]
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          volumeMounts:
+            - name: postgresql-extended-config
+              mountPath: /pgconf/
+            - name: dshm
+              mountPath: /dev/shm
+            - name: data
+              mountPath: /bitnami/postgresql
+            - name: custom-init-scripts
+              mountPath: /docker-entrypoint-initdb.d/ 
+      volumes:
+        - name: postgresql-extended-config
+          configMap:
+            name: {{.Values.name}}-postgresql-extended-configuration
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+        - name: custom-init-scripts
+          configMap:
+            name: {{.Values.name}}-psql-init
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: {{.Values.env.config.postgresVolumeSize}}
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{.Values.name}}-postgresql-rpl
+  labels:
+    app.kubernetes.io/name: postgresql-rpl
+    app.kubernetes.io/instance: {{.Values.name}}
+    app.kubernetes.io/component: replica
+  annotations:
+spec:
+  serviceName: {{.Values.name}}-postgresql-headless-rpl
+  replicas: {{.Values.postgresMemberReplicas}}
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgresql-rpl
+      app.kubernetes.io/instance: {{.Values.name}}
+      role: replica
+  template:
+    metadata:
+      name: {{.Values.name}}-postgresql-rpl
+      labels:
+        app.kubernetes.io/name: postgresql-rpl
+        app.kubernetes.io/instance: {{.Values.name}}
+        role: replica
+        app.kubernetes.io/component: replica
+        tier: addon
+    spec:      
+      affinity:
+        podAffinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: postgresql-rpl
+                    app.kubernetes.io/instance: {{.Values.name}}
+                    app.kubernetes.io/component: replica
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+        nodeAffinity:
+      serviceAccountName: utilihive-ghostwriter-stack-filebeat
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 0
+        fsGroup: 1001
+      imagePullSecrets:
+      - name: jfrog-0013util
+      containers:
+        - name: {{.Values.name}}-postgresql-rpl
+          image: {{.Values.postgresImage}}
+          imagePullPolicy: "IfNotPresent"
+          resources:
+            limits:
+              cpu: 1500m
+              memory: 2Gi
+            requests:
+              cpu: 1500m
+              memory: 2Gi
+          securityContext:
+            capabilities:
+              add:
+                - SYS_ADMIN
+          env:
+            - name: BITNAMI_DEBUG
+              value: "false"
+            - name: POSTGRESQL_PORT_NUMBER
+              value: "5432"
+            - name: POSTGRESQL_VOLUME_DIR
+              value: "/bitnami/postgresql"
+            - name: PGDATA
+              value: "/bitnami/postgresql/data"
+            - name: POSTGRES_REPLICATION_MODE
+              value: "slave"
+            - name: POSTGRES_REPLICATION_USER
+              value: "postgres"
+            - name: POSTGRES_REPLICATION_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.name}}-postgresql
+                  key: postgresql-password
+            - name: POSTGRESQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.name}}-postgresql
+                  key: postgresql-user
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{.Values.name}}-postgresql
+                  key: postgresql-password
+            - name: POSTGRES_CLUSTER_APP_NAME
+              value: my_application
+            - name: POSTGRES_MASTER_HOST
+              value: {{.Values.name}}-postgresql
+            - name: POSTGRES_MASTER_PORT_NUMBER
+              value: "5432"
+            # TLS
+            - name: POSTGRESQL_ENABLE_TLS
+              value: "no"
+            # Audit
+            - name: POSTGRESQL_LOG_HOSTNAME
+              value: "false"
+            - name: POSTGRESQL_LOG_CONNECTIONS
+              value: "false"
+            - name: POSTGRESQL_LOG_DISCONNECTIONS
+              value: "false"
+            - name: POSTGRESQL_PGAUDIT_LOG_CATALOG
+              value: "off"
+            # Others
+            - name: POSTGRESQL_CLIENT_MIN_MESSAGES
+              value: "error"
+            - name: POSTGRESQL_SHARED_PRELOAD_LIBRARIES
+              value: "pgaudit"       
+            # - name: POSTGRESQL_DATABASE
+            #   value: "postgres"
+
+          ports:
+            - name: tcp-postgresql
+              containerPort: 5432
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - exec pg_isready -U "${POSTGRESQL_USER}" -d "dbname=postgres" -h 127.0.0.1 -p 5432
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - -e
+                - |
+                  exec pg_isready -U "${POSTGRESQL_USER}" -d "dbname=postgres" -h 127.0.0.1 -p 5432 
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 6
+          volumeMounts:
+            - name: postgresql-extended-config
+              mountPath: /pgconf/
+            - name: dshm
+              mountPath: /dev/shm
+            - name: data
+              mountPath: /bitnami/postgresql
+      volumes:
+        - name: postgresql-extended-config
+          configMap:
+            name: {{.Values.name}}-postgresql-extended-configuration
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: {{.Values.env.config.postgresVolumeSize}}
+---
