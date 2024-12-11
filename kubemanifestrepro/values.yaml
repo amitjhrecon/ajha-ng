@@ -1,0 +1,47 @@
+name: <+pipeline.name>
+namespace: <+infra.namespace>
+postgresMemberReplicas: <+pipeline.variables.postgresMemberReplicas>
+postgresPrimaryReplicas: <+pipeline.variables.postgresPrimaryReplicas>
+# postgresReplicas: <+pipeline.variables.postgresReplicas>
+# postgresImage: bitnami/postgresql-repmgr:13.4.0-debian-10-r89
+# postgresPgpoolImage: bitnami/pgpool:4.5.2-debian-12-r0
+postgresImage: bitnami/postgresql:13.4.0-debian-10-r0
+kongReplicas: <+pipeline.variables.kongReplicas>
+kongImage: bitnami/kong:3.4.2-debian-11-r1
+cassandraSeedReplicas: <+pipeline.variables.cassandraSeedReplicas>
+cassandraReplicas: <+pipeline.variables.cassandraReplicas>
+cassandraImage: cassandra:3
+prometheusImage: prom/prometheus:v2.45.2
+prometheusConfigReloaderImage: quay.io/prometheus-operator/prometheus-config-reloader:v0.71.2
+victoriaMetricsImage: victoriametrics/victoria-metrics:v1.66.0
+victoriaMetricsServerName: victoria-metrics-single-node-server
+deploymentEnv: <+stage.variables.env>
+storageClassName: <+pipeline.variables.storageClass>
+subdomain: <+stage.variables.subdomain>
+elasticsearchKibanaToken: <+stage.variables.elasticsearchKibanaToken>
+appZone: <+stage.variables.appZone>
+kongIpWhitelist: <+stage.variables.kongIpWhitelist>
+
+
+secrets:
+  databases:
+    identityPassword: <+stage.variables.postgresIdentityPassword>
+    frontendConfigurationPassword: <+stage.variables.posgresFrontendConfigurationPassword>
+    kongPassword: <+stage.variables.postgresKongPassword>
+    resourceRegistryPassword: <+stage.variables.postgresResourceRegistryPassword>
+    ghostwriterPassword: <+stage.variables.postgresGhostwriterPassword>
+    insightsPassword: <+stage.variables.postgresInsightsPassword>
+  elk:
+    elasticpassword: <+pipeline.variables.elasticPassword>
+
+env:
+  config:
+    userId: "<+stage.variables.ocpUserId>"
+    userGroup: "<+stage.variables.ocpUserGroup>"
+    postgresVolumeSize: <+pipeline.variables.postgresVolumeSize>
+    gwMemCacheSize: <+stage.variables.gwMemCacheSize>
+    vmVolumeSize: <+stage.variables.victoriaMetricsVolumeSize>
+  secrets:
+    POSTGRESQL_USER: postgres
+    POSTGRESQL_PASSWORD: <+stage.variables.postgresqlPass>
+    POSTGRESQL_ADMIN_PASSWORD: <+stage.variables.postgresqlAdminPass>
