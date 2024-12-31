@@ -26,6 +26,7 @@ pipeline:
                         script: |-
                           echo "test"
                           echo "<+pipeline.variables.somevar>"
+                          echo <+trigger.payload.sometestvar>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
