@@ -49,4 +49,4 @@ pipeline:
       type: String
       description: ""
       required: false
-      value: testvalue\somevalue
+      value: <+input>
