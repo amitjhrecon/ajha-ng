@@ -1,0 +1,11 @@
+inputSet:
+  name: test
+  identifier: test
+  orgIdentifier: default
+  projectIdentifier: testproject
+  pipeline:
+    identifier: remotetriggertestpipeline
+    variables:
+      - name: somevar
+        type: String
+        value: <+trigger.payload.SomeTestVar>
