@@ -25,20 +25,17 @@ pipeline:
                       spec:
                         script: |-
                           echo "test"
+                          microdnf install jq 
 
+                          echo "this will not show doublequotes"
                           echo <+eventPayload>
-
                           cat>>myfile.json<<EOF
                           <+eventPayload>
                           EOF
-
                           cat myfile.json 
 
-                          echo "final test"
-                          microdnf install jq 
-
+                          echo "=====""
                           myvar=$(echo '<+eventPayload>')
-
                           echo "$myvar" | jq .
                     environmentVariables: []
                     outputVariables: []
