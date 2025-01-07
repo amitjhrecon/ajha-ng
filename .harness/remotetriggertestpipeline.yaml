@@ -23,9 +23,23 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: |
+                        script: |-
                           echo "test"
-                          echo "<+pipeline.variables.somevar>"
+
+                          echo <+eventPayload>
+
+                          cat>>myfile.json<<EOF
+                          <+eventPayload>
+                          EOF
+
+                          cat myfile.json 
+
+                          echo "final test"
+                          microdnf install jq 
+
+                          myvar=$(echo '<+eventPayload>')
+
+                          echo "$myvar" | jq .
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
