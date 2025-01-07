@@ -33,7 +33,7 @@ pipeline:
                           EOF
                           cat myfile.json 
 
-                          echo "=====""
+                          echo "====="
                           myvar=$(echo '<+eventPayload>')
                           echo "$myvar" | jq .
                     environmentVariables: []
