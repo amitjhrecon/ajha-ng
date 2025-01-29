@@ -1,0 +1,42 @@
+pipeline:
+  name: testcdtpipeline
+  identifier: testcdtpipeline
+  projectIdentifier: testproject
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: testcdtstage
+        identifier: testcdtstage
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: CustomDeployment
+          customDeploymentRef:
+            templateRef: org.cdttest
+            versionLabel: "1.1"
+          service:
+            serviceRef: <+input>
+            serviceInputs: <+input>
+          execution:
+            steps:
+              - step:
+                  name: Fetch Instances
+                  identifier: fetchInstances
+                  type: FetchInstanceScript
+                  timeout: 10m
+                  spec: {}
+            rollbackSteps: []
+          environment:
+            environmentRef: <+input>
+            deployToAll: false
+            environmentInputs: <+input>
+            serviceOverrideInputs: <+input>
+            infrastructureDefinitions: <+input>
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
