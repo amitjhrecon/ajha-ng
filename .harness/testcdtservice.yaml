@@ -6,6 +6,6 @@ service:
     spec:
       customDeploymentRef:
         templateRef: org.cdttest
-        versionLabel: "1.1"
+        versionLabel: "1.2"
     type: CustomDeployment
   description: saving to cdtrepro
