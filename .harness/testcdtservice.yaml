@@ -8,4 +8,4 @@ service:
         templateRef: org.cdttest
         versionLabel: "1.2"
     type: CustomDeployment
-  description: saving to cdtrepro
+  description: saving to cdtrepro updating to repro
