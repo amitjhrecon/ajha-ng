@@ -1,0 +1,4 @@
+service:
+  name: testcdtservice
+  identifier: testcdtservice
+  orgIdentifier: default
