@@ -12,21 +12,21 @@ pipeline:
         type: Deployment
         spec:
           deploymentType: CustomDeployment
-          customDeploymentRef:
-            templateRef: org.cdttest
-            versionLabel: "1.1"
-          service:
-            serviceRef: <+input>
-            serviceInputs: <+input>
           execution:
             steps:
               - step:
-                  name: Fetch Instances
-                  identifier: fetchInstances
                   type: FetchInstanceScript
-                  timeout: 10m
+                  name: FetchInstanceScript_1
+                  identifier: FetchInstanceScript_1
                   spec: {}
+                  timeout: 10m
             rollbackSteps: []
+          customDeploymentRef:
+            templateRef: org.cdttest
+            versionLabel: "1.2"
+          service:
+            serviceRef: <+input>
+            serviceInputs: <+input>
           environment:
             environmentRef: <+input>
             deployToAll: false
