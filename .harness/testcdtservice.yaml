@@ -2,3 +2,9 @@ service:
   name: testcdtservice
   identifier: testcdtservice
   orgIdentifier: default
+  serviceDefinition:
+    spec:
+      customDeploymentRef:
+        templateRef: org.cdttest
+        versionLabel: "1.1"
+    type: CustomDeployment
