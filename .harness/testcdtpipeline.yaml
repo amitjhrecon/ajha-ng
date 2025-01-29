@@ -23,7 +23,7 @@ pipeline:
             rollbackSteps: []
           customDeploymentRef:
             templateRef: org.cdttest
-            versionLabel: "1.2"
+            versionLabel: "1.1"
           service:
             serviceRef: <+input>
             serviceInputs: <+input>
