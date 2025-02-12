@@ -59,6 +59,23 @@ pipeline:
                         script: |-
                           echo "hello"
                           echo "this is test"
+                          export KUBECONFIG=${HARNESS_KUBE_CONFIG_PATH}
+
+                          output=$(kubectl get secret/delinea-secret \
+                              -n external-secrets \
+                              --kubeconfig=$KUBECONFIG \
+                              -o go-template \
+                              --template '{{.metadata.name}} {{.metadata.creationTimestamp}}')
+                          echo "output=$output"
+                          if [[ "${output}" == *"delinea-secret"* ]]; then
+                            echo "kubectl delete secret regsecret --namespace=external-secrets --kubeconfig=$KUBECONFIG"
+                          #  kubectl delete secret regsecret --namespace=<+infra.namespace> --kubeconfig=$KUBECONFIG
+                          fi
+
+
+                          echo "kubectl create secret generic delinea-secret --from-literal=username=DSS-DEVPROD-SECURITY --from-literal=password="<+secrets.getValue('account.testsecret')>"  -n external-secrets --kubeconfig=$KUBECONFIG"
+                          #kubectl create secret generic delinea-secret --from-literal=username=DSS-DEVPROD-SECURITY --from-literal=password="<+secrets.getValue('account.testsecret')>"  -n external-secrets --kubeconfig=$KUBECONFIG
+                          echo "<+secrets.getValue('account.testsecret')>"
                           echo "<+secrets.getValue('account.testsecret')>"
                     environmentVariables: []
                     outputVariables: []
