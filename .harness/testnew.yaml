@@ -43,7 +43,7 @@ pipeline:
             environmentRef: dsadad
             deployToAll: false
             infrastructureDefinitions:
-              - identifier: aa
+              - identifier: gh
           execution:
             steps:
               - step:
