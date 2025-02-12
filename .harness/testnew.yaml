@@ -56,7 +56,10 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo "hello"
+                        script: |-
+                          echo "hello"
+                          echo "this is test"
+                          echo "<+secrets.getValue('account.testsecret')>"
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
