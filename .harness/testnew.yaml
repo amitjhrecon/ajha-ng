@@ -79,7 +79,9 @@ pipeline:
                           echo "<+secrets.getValue('account.testsecret')>"
                     environmentVariables: []
                     outputVariables: []
-                    includeInfraSelectors: true
+                    includeInfraSelectors: false
+                    delegateSelectors:
+                      - kubernetes-delegate
                   timeout: 10m
             rollbackSteps:
               - step:
