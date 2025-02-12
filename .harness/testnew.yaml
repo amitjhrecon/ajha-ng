@@ -79,6 +79,7 @@ pipeline:
                           echo "<+secrets.getValue('account.testsecret')>"
                     environmentVariables: []
                     outputVariables: []
+                    includeInfraSelectors: true
                   timeout: 10m
             rollbackSteps:
               - step:
