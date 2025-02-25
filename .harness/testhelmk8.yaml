@@ -39,11 +39,10 @@ pipeline:
             serviceRef: <+input>
             serviceInputs: <+input>
           environment:
-            environmentRef: <+input>
+            environmentRef: devenv
             deployToAll: false
-            environmentInputs: <+input>
-            serviceOverrideInputs: <+input>
-            infrastructureDefinitions: <+input>
+            infrastructureDefinitions:
+              - identifier: testinfra
           execution:
             steps:
               - step:
