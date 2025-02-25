@@ -36,13 +36,22 @@ pipeline:
         spec:
           deploymentType: Kubernetes
           service:
-            serviceRef: <+input>
-            serviceInputs: <+input>
+            serviceRef: helmk8
           environment:
             environmentRef: devenv
+            serviceOverrideInputs:
+              manifests:
+                - manifest:
+                    identifier: qwe
+                    type: Values
+                    spec:
+                      store:
+                        type: Github
+                        spec:
+                          branch: <+input>
             deployToAll: false
             infrastructureDefinitions:
-              - identifier: testinfra
+              - identifier: hh
           execution:
             steps:
               - step:
