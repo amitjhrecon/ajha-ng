@@ -41,7 +41,7 @@ pipeline:
             environmentRef: devenv
             deployToAll: false
             infrastructureDefinitions:
-              - identifier: hh
+              - identifier: testinfra
           execution:
             steps:
               - step:
