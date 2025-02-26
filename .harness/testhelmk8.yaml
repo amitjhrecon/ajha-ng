@@ -69,4 +69,6 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+        delegateSelectors:
+          - csamitk8delegate
   allowStageExecutions: true
