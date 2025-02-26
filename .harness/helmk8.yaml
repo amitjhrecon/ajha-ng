@@ -1,0 +1,36 @@
+service:
+  name: helmk8
+  identifier: helmk8
+  orgIdentifier: default
+  projectIdentifier: testproject
+  serviceDefinition:
+    spec:
+      manifests:
+        - manifest:
+            identifier: testhelmk8
+            type: HelmChart
+            spec:
+              store:
+                type: Github
+                spec:
+                  connectorRef: account.ajhagithubaccount
+                  gitFetchType: Branch
+                  folderPath: helm-chart-sources/helm-chart-test
+                  repoName: work-helm
+                  branch: main
+              subChartPath: ""
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+              helmVersion: V3
+              fetchHelmChartMetadata: false
+      hooks:
+        - preHook:
+            identifier: testhook
+            storeType: Inline
+            actions:
+              - SteadyStateCheck
+            store:
+              content: |-
+                echo "this is test"
+                echo $MANIFEST_FILES_DIRECTORY 
+    type: Kubernetes
