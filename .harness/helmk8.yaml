@@ -33,4 +33,11 @@ service:
               content: |-
                 echo "this is test"
                 echo $MANIFEST_FILES_DIRECTORY 
+        - postHook:
+            identifier: test
+            storeType: Inline
+            actions:
+              - SteadyStateCheck
+            store:
+              content: exit 1
     type: Kubernetes
