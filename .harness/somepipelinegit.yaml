@@ -1,0 +1,65 @@
+pipeline:
+  name: somepipelinegit
+  identifier: somepipelinegit
+  projectIdentifier: testproject
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: st1
+        identifier: st1
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: myvar="someoutput"
+                    environmentVariables: []
+                    outputVariables:
+                      - name: myvar
+                        type: String
+                        value: myvar
+                    outputAlias:
+                      key: somevar
+                      scope: Pipeline
+                  timeout: 10m
+        tags: {}
+    - stage:
+        name: st2
+        identifier: st2
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo <+exportedVariables.getValue("pipeline.<+pipeline.variables.sv>.myvar")>
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
+  variables:
+    - name: sv
+      type: String
+      description: ""
+      required: false
+      value: somevar
