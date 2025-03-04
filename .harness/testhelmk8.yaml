@@ -54,7 +54,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo <+pipeline.variables.myrelease>
+                        script: echo <+<+serviceVariables.myreleaseName>!=null?<+serviceVariables.myreleaseName>:<+"something something">>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
