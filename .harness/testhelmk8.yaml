@@ -54,7 +54,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo <+<+serviceVariables.myreleaseName>!=null?<+serviceVariables.myreleaseName>:<+"something something">>
+                        script: kubectl config view --raw
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
