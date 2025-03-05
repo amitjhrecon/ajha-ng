@@ -54,7 +54,9 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: kubectl config view --raw
+                        script: |-
+                          export KUBECONFIG=${HARNESS_KUBE_CONFIG_PATH}
+                          kubectl config view --raw
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
