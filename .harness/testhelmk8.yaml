@@ -96,4 +96,4 @@ pipeline:
       type: String
       description: ""
       required: false
-      value: <+<+serviceVariables.myreleaseName>!=null?<+serviceVariables.myreleaseName>:<+"release-"+<+INFRA_KEY_SHORT_ID>>>
+      value: <+input>
