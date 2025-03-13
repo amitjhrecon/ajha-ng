@@ -54,12 +54,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: |-
-                          export KUBECONFIG=${HARNESS_KUBE_CONFIG_PATH}
-
-                          cp ${HARNESS_KUBE_CONFIG_PATH} /opt/harness-delegate/mydelegateconfig.txt
-
-                          kubectl config view --raw
+                        script: echo <+manifestConfig.primaryManifestId>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
