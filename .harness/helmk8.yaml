@@ -23,21 +23,4 @@ service:
               enableDeclarativeRollback: false
               helmVersion: V3
               fetchHelmChartMetadata: false
-      hooks:
-        - preHook:
-            identifier: testhook
-            storeType: Inline
-            actions:
-              - SteadyStateCheck
-            store:
-              content: |-
-                echo "this is test"
-                echo $MANIFEST_FILES_DIRECTORY 
-        - postHook:
-            identifier: test
-            storeType: Inline
-            actions:
-              - SteadyStateCheck
-            store:
-              content: exit 1
     type: Kubernetes
