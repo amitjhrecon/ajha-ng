@@ -23,4 +23,17 @@ service:
               enableDeclarativeRollback: false
               helmVersion: V3
               fetchHelmChartMetadata: false
+        - manifest:
+            identifier: valuesoverrides
+            type: Values
+            spec:
+              store:
+                type: Github
+                spec:
+                  connectorRef: account.ajhagithubaccount
+                  gitFetchType: Branch
+                  paths:
+                    - /prashantvalues/
+                  repoName: work-helm
+                  branch: main
     type: Kubernetes
