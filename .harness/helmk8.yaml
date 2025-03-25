@@ -33,7 +33,7 @@ service:
                   connectorRef: account.ajhagithubaccount
                   gitFetchType: Branch
                   paths:
-                    - /prashantvalues/
+                    - <+secrets.getValue("pilot-dse-lup-deployment-values")>
                   repoName: work-helm
                   branch: main
       artifacts:
