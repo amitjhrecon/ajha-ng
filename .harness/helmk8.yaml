@@ -36,4 +36,30 @@ service:
                     - /prashantvalues/
                   repoName: work-helm
                   branch: main
+      artifacts:
+        primary:
+          primaryArtifactRef: <+input>
+          sources:
+            - identifier: customtrinet
+              spec:
+                version: <+pipeline.stages.getservicedetails.spec.execution.steps.ShellScript_1.output.outputVariables.artifact.split(',')[<+strategy.iteration>]>
+                timeout: 5m
+                scripts:
+                  fetchAllArtifacts:
+                    artifactsArrayPath: $.data
+                    versionPath: myartifact
+                    spec:
+                      shell: Bash
+                      source:
+                        spec:
+                          script: |-
+                            cat>>artifactpath.json<<EOF
+                            {"myartifact":"<+pipeline.stages.getservicedetails.spec.execution.steps.ShellScript_1.output.outputVariables.artifact.split(',')[<+strategy.iteration>]>"} 
+                            EOF
+
+                            microdnf install jq
+
+                            jq -s '{ "data": . }' artifactpath.json > $HARNESS_ARTIFACT_RESULT_PATH
+                        type: Inline
+              type: CustomArtifact
     type: Kubernetes
