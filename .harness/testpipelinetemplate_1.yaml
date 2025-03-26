@@ -36,4 +36,4 @@ template:
         type: String
         description: ""
         required: false
-        value: thisisatestvalue
+        value: <+input>
