@@ -1,0 +1,17 @@
+pipeline:
+  name: pipelineremotetest
+  identifier: pipelineremotetest
+  tags: {}
+  template:
+    templateRef: testpipelinetemplate
+    versionLabel: "1"
+    templateInputs:
+      variables:
+        - name: testvar
+          type: String
+          value: <+input>
+        - name: aaa
+          type: String
+          value: <+input>
+  projectIdentifier: XYZ
+  orgIdentifier: default
