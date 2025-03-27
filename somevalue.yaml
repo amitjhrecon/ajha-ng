@@ -1,1 +1,2 @@
-somevalue: <+secrets.getValue(testkey)>
+somevalue: |
+<+pipeline.variables.somevar>
