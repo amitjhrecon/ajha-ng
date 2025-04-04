@@ -1,0 +1,12 @@
+connector:
+  name: k8connector
+  identifier: k8connector
+  description: ""
+  orgIdentifier: CSE
+  projectIdentifier: ajhacseng
+  type: K8sCluster
+  spec:
+    credential:
+      type: InheritFromDelegate
+    delegateSelectors:
+    - ajha-ng-delegate
